@@ -1,0 +1,4639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pru's Closet — Fashion That Finds You</title>
+    <style>
+/* ==========================================
+   Pru's Closet — Stylesheet
+   ========================================== */
+
+:root {
+    --primary: #C4968A;
+    --primary-light: #D4B5AD;
+    --accent: #D4AF37;
+    --accent-hover: #C5A028;
+    --bg: #FDF8F6;
+    --bg-warm: #F5EBE8;
+    --text: #4E342E;
+    --text-light: #8D6E63;
+    --text-muted: #A1887F;
+    --white: #ffffff;
+    --border: #E8D5D0;
+    --shadow: 0 4px 24px rgba(0,0,0,0.08);
+    --shadow-hover: 0 8px 40px rgba(0,0,0,0.12);
+    --radius: 12px;
+    --radius-sm: 8px;
+    --transition: all 0.3s ease;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5 { font-family: 'Playfair Display', serif; font-weight: 600; }
+
+a { text-decoration: none; color: inherit; }
+
+img { max-width: 100%; display: block; }
+
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+/* ========== NAVIGATION ========== */
+.navbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    transition: var(--transition);
+}
+
+.nav-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.logo-icon {
+    color: var(--accent);
+    font-size: 1.3rem;
+}
+
+.logo-img {
+    height: 48px;
+    width: auto;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+}
+
+.nav-links {
+    display: flex;
+    gap: 32px;
+}
+
+.nav-link {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-light);
+    transition: var(--transition);
+    position: relative;
+    padding: 4px 0;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: var(--primary);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 0; height: 2px;
+    background: var(--accent);
+    transition: var(--transition);
+}
+
+.nav-link:hover::after, .nav-link.active::after {
+    width: 100%;
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.icon-btn {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--text);
+    font-size: 1.1rem;
+    transition: var(--transition);
+    position: relative;
+}
+
+.icon-btn:hover {
+    background: var(--bg-warm);
+    color: var(--primary);
+}
+
+.cart-count {
+    position: absolute;
+    top: -2px; right: -2px;
+    background: var(--accent);
+    color: var(--white);
+    font-size: 0.65rem;
+    font-weight: 700;
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+}
+
+.menu-toggle { display: none; }
+
+.search-bar {
+    display: none;
+    padding: 0 24px 16px;
+    border-top: 1px solid var(--border);
+    background: rgba(255,255,255,0.98);
+}
+
+.search-bar.active { display: block; }
+
+.search-container {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    gap: 8px;
+    padding-top: 12px;
+}
+
+.search-container input {
+    flex: 1;
+    padding: 12px 16px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: 0.95rem;
+    outline: none;
+}
+
+.search-container input:focus {
+    border-color: var(--accent);
+}
+
+.search-container button {
+    padding: 12px 18px;
+    background: var(--primary);
+    color: var(--white);
+    border-radius: var(--radius-sm);
+    transition: var(--transition);
+}
+
+.search-container button:hover {
+    background: var(--primary-light);
+}
+
+.close-search {
+    background: var(--bg-warm) !important;
+    color: var(--text) !important;
+}
+
+/* Mobile Menu */
+.mobile-menu {
+    display: none;
+    position: fixed;
+    top: 72px; left: 0; right: 0;
+    background: var(--white);
+    z-index: 999;
+    flex-direction: column;
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--border);
+    box-shadow: var(--shadow);
+}
+
+.mobile-menu.active { display: flex; }
+
+.mobile-menu a {
+    padding: 12px 0;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text);
+    border-bottom: 1px solid var(--border);
+}
+
+.mobile-menu a:last-child { border-bottom: none; }
+
+/* ========== MAIN ========== */
+main { padding-top: 72px; min-height: calc(100vh - 72px); }
+
+/* ========== HERO ========== */
+.hero {
+    position: relative;
+    height: 90vh;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--primary) 0%, #3E2723 100%);
+}
+
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    opacity: 0.3;
+    background: url('https://images.unsplash.com/photo-1445205170230-053b83016050?w=1920&h=1080&fit=crop') center/cover;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(45,27,78,0.7) 0%, rgba(26,15,46,0.9) 100%);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: var(--white);
+    max-width: 700px;
+    padding: 0 24px;
+}
+
+.hero-tag {
+    display: inline-block;
+    padding: 6px 18px;
+    background: var(--accent);
+    color: var(--primary);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border-radius: 30px;
+    margin-bottom: 24px;
+}
+
+.hero h1 {
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    line-height: 1.1;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.hero h1 span {
+    color: var(--accent);
+    font-style: italic;
+}
+
+.hero p {
+    font-size: 1.15rem;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 36px;
+    font-weight: 300;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 32px;
+    border-radius: 30px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: var(--transition);
+    cursor: pointer;
+    border: none;
+}
+
+.btn-primary {
+    background: var(--accent);
+    color: var(--primary);
+}
+
+.btn-primary:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(201,169,110,0.3);
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--white);
+    border: 2px solid rgba(255,255,255,0.4);
+}
+
+.btn-outline:hover {
+    background: var(--white);
+    color: var(--primary);
+    border-color: var(--white);
+}
+
+/* ========== SECTIONS ========== */
+.section {
+    padding: 80px 24px;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 48px;
+}
+
+.section-header h2 {
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    color: var(--primary);
+    margin-bottom: 12px;
+}
+
+.section-header p {
+    color: var(--text-light);
+    font-size: 1.05rem;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* ========== CATEGORY CARDS ========== */
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+}
+
+.category-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f4e6e0 0%, #e8d5cc 100%);
+}
+.category-placeholder span { font-size: 3.5rem; opacity: 0.65; }
+.review-form {
+    max-width: 640px;
+    margin: 40px auto 0;
+    background: var(--card-bg);
+    padding: 28px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    text-align: left;
+}
+.review-form h3 {
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 6px;
+}
+.review-form-intro {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+}
+.category-card {
+    position: relative;
+    border-radius: var(--radius);
+    overflow: hidden;
+    aspect-ratio: 3/4;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.category-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-hover);
+}
+
+.category-card img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.category-card:hover img {
+    transform: scale(1.08);
+}
+
+.category-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 40%, rgba(45,27,78,0.85) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 24px;
+    color: var(--white);
+}
+
+.category-card-overlay .emoji {
+    font-size: 2rem;
+    margin-bottom: 8px;
+}
+
+.category-card-overlay h3 {
+    font-size: 1.2rem;
+    margin-bottom: 4px;
+}
+
+.category-card-overlay span {
+    font-size: 0.85rem;
+    opacity: 0.8;
+}
+
+/* ========== PRODUCT GRID ========== */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+.product-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    transition: var(--transition);
+    cursor: pointer;
+    position: relative;
+}
+
+.product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+}
+
+.product-image {
+    position: relative;
+    aspect-ratio: 3/4;
+    overflow: hidden;
+}
+
+.product-image img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.product-card:hover .product-image img {
+    transform: scale(1.05);
+}
+
+.product-badge {
+    position: absolute;
+    top: 12px; left: 12px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.product-badge.new { background: var(--accent); color: var(--primary); }
+.product-badge.sale { background: #e74c3c; color: var(--white); }
+
+.product-actions {
+    position: absolute;
+    bottom: 12px; right: 12px;
+    display: flex;
+    gap: 8px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: var(--transition);
+}
+
+.product-card:hover .product-actions {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.product-actions button {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--white);
+    color: var(--text);
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: var(--transition);
+    font-size: 0.85rem;
+}
+
+.product-actions button:hover {
+    background: var(--primary);
+    color: var(--white);
+}
+
+.product-info {
+    padding: 16px;
+}
+
+.product-tag {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+}
+
+.product-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 8px;
+    font-family: 'Inter', sans-serif;
+    line-height: 1.4;
+}
+
+.product-price-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.product-price {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.product-old-price {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    text-decoration: line-through;
+}
+
+.product-rating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 6px;
+}
+
+.product-rating .stars {
+    color: #f1c40f;
+}
+
+/* ========== COLLECTION BANNER ========== */
+.collection-banner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    background: var(--primary);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin-bottom: 48px;
+}
+
+.collection-banner-text {
+    padding: 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--white);
+}
+
+.collection-banner-text h3 {
+    font-size: 2rem;
+    margin-bottom: 12px;
+}
+
+.collection-banner-text p {
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 24px;
+}
+
+.collection-banner-img {
+    min-height: 300px;
+    background: url('https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800&h=600&fit=crop') center/cover;
+}
+
+/* ========== PRU'S PICKS ========== */
+.picks-section {
+    background: var(--bg-warm);
+    padding: 80px 0;
+}
+
+.picks-section .section { padding: 0 24px; }
+
+/* ========== REVIEWS ========== */
+.reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.review-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 28px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    transition: var(--transition);
+}
+
+.review-card:hover {
+    box-shadow: var(--shadow-hover);
+}
+
+.review-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.review-avatar {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: var(--white);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.review-meta h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+}
+
+.review-meta span {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.review-stars {
+    color: #f1c40f;
+    font-size: 0.85rem;
+    margin-bottom: 12px;
+}
+
+.review-text {
+    font-size: 0.95rem;
+    color: var(--text-light);
+    line-height: 1.6;
+}
+
+.review-image {
+    margin-top: 16px;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    width: 100px; height: 100px;
+}
+
+.review-image img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+}
+
+/* ========== ABOUT ========== */
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.about-image {
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-hover);
+}
+
+.about-image img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+}
+
+.about-content h2 {
+    font-size: 2.5rem;
+    color: var(--primary);
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.about-content p {
+    font-size: 1.05rem;
+    color: var(--text-light);
+    margin-bottom: 20px;
+    line-height: 1.7;
+}
+
+.about-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 36px;
+}
+
+.stat-item h3 {
+    font-size: 2rem;
+    color: var(--accent);
+    font-family: 'Playfair Display', serif;
+}
+
+.stat-item p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+/* ========== CONTACT ========== */
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+}
+
+.contact-info-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 32px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    transition: var(--transition);
+}
+
+.contact-info-card:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-2px);
+}
+
+.contact-info-card i {
+    font-size: 1.3rem;
+    color: var(--accent);
+    width: 40px; height: 40px;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--bg-warm);
+    border-radius: var(--radius-sm);
+    flex-shrink: 0;
+}
+
+.contact-info-card h4 {
+    font-size: 1.1rem;
+    margin-bottom: 4px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+}
+
+.contact-info-card p, .contact-info-card a {
+    font-size: 0.95rem;
+    color: var(--text-light);
+}
+
+.contact-info-card a:hover {
+    color: var(--accent);
+}
+
+.contact-form {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 32px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 6px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: 0.95rem;
+    font-family: inherit;
+    outline: none;
+    transition: var(--transition);
+    background: var(--bg);
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    border-color: var(--accent);
+    background: var(--white);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* ========== DELIVERY ========== */
+.delivery-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 32px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    margin-bottom: 24px;
+}
+
+.delivery-card h3 {
+    font-size: 1.3rem;
+    color: var(--primary);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.delivery-card h3 i {
+    color: var(--accent);
+    font-size: 1.1rem;
+}
+
+.delivery-card p, .delivery-card li {
+    font-size: 0.95rem;
+    color: var(--text-light);
+    line-height: 1.7;
+}
+
+.delivery-card ul {
+    padding-left: 20px;
+    margin-top: 8px;
+}
+
+.delivery-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+}
+
+.delivery-table th, .delivery-table td {
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.95rem;
+}
+
+.delivery-table th {
+    font-weight: 600;
+    color: var(--primary);
+    background: var(--bg-warm);
+}
+
+.delivery-table td {
+    color: var(--text-light);
+}
+
+/* ========== PRODUCT DETAIL ========== */
+.product-detail {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    padding: 40px 24px;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.product-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.main-image {
+    border-radius: var(--radius);
+    overflow: hidden;
+    aspect-ratio: 3/4;
+    background: var(--bg-warm);
+}
+
+.main-image img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+}
+
+.thumbnail-row {
+    display: flex;
+    gap: 12px;
+}
+
+.thumbnail-row img {
+    width: 80px; height: 80px;
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: var(--transition);
+}
+
+.thumbnail-row img:hover, .thumbnail-row img.active {
+    border-color: var(--accent);
+}
+
+.product-detail-info h1 {
+    font-size: 2rem;
+    color: var(--primary);
+    margin-bottom: 12px;
+    line-height: 1.2;
+}
+
+.product-detail-price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 8px;
+}
+
+.product-detail-price .old {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    text-decoration: line-through;
+    margin-left: 12px;
+    font-weight: 500;
+}
+
+.product-detail-rating {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.product-detail-rating .stars { color: #f1c40f; }
+
+.detail-section {
+    margin-bottom: 24px;
+}
+
+.detail-section h4 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 10px;
+    font-family: 'Inter', sans-serif;
+}
+
+.color-options, .size-options {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.color-option, .size-option {
+    padding: 8px 18px;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: var(--transition);
+    background: var(--white);
+}
+
+.color-option:hover, .size-option:hover,
+.color-option.active, .size-option.active {
+    border-color: var(--accent);
+    background: var(--accent);
+    color: var(--primary);
+}
+
+.quantity-selector {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    width: fit-content;
+}
+
+.quantity-selector button {
+    width: 40px; height: 40px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+    background: var(--bg-warm);
+    transition: var(--transition);
+}
+
+.quantity-selector button:hover {
+    background: var(--accent);
+}
+
+.quantity-selector input {
+    width: 50px; height: 40px;
+    text-align: center;
+    border: none;
+    font-size: 1rem;
+    font-weight: 600;
+    outline: none;
+}
+
+.detail-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 28px;
+    flex-wrap: wrap;
+}
+
+.detail-buttons .btn {
+    padding: 14px 28px;
+}
+
+.btn-whatsapp {
+    background: #25D366;
+    color: var(--white);
+}
+
+.btn-whatsapp:hover {
+    background: #1da851;
+}
+
+.stock-indicator {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 12px;
+}
+
+.stock-indicator.in-stock::before {
+    content: '';
+    width: 8px; height: 8px;
+    background: #2ecc71;
+    border-radius: 50%;
+}
+
+.stock-indicator.low::before {
+    content: '';
+    width: 8px; height: 8px;
+    background: #e74c3c;
+    border-radius: 50%;
+}
+
+/* ========== SHOP PAGE ========== */
+.shop-layout {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 32px;
+    padding: 32px 24px;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.shop-sidebar {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    height: fit-content;
+    position: sticky;
+    top: 96px;
+}
+
+.sidebar-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 16px;
+    font-family: 'Inter', sans-serif;
+}
+
+.sidebar-category {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 0.95rem;
+    color: var(--text-light);
+    margin-bottom: 4px;
+}
+
+.sidebar-category:hover, .sidebar-category.active {
+    background: var(--bg-warm);
+    color: var(--primary);
+}
+
+.sidebar-category .emoji { font-size: 1.1rem; }
+
+.shop-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.shop-header h2 {
+    font-size: 1.5rem;
+    color: var(--primary);
+}
+
+.shop-header span {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.sort-select {
+    padding: 8px 14px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: 0.9rem;
+    background: var(--white);
+    outline: none;
+}
+
+/* ========== CART ========== */
+.cart-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 24px;
+}
+
+.cart-container h2 {
+    font-size: 2rem;
+    color: var(--primary);
+    margin-bottom: 32px;
+}
+
+.cart-item {
+    display: grid;
+    grid-template-columns: 100px 1fr auto;
+    gap: 20px;
+    align-items: center;
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+
+.cart-item img {
+    width: 100px; height: 100px;
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+}
+
+.cart-item-info h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+    font-family: 'Inter', sans-serif;
+}
+
+.cart-item-info p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+}
+
+.cart-item-price {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.cart-item-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+}
+
+.cart-item-actions .remove-btn {
+    font-size: 0.85rem;
+    color: #e74c3c;
+    transition: var(--transition);
+}
+
+.cart-item-actions .remove-btn:hover {
+    text-decoration: underline;
+}
+
+.cart-summary {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 28px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    margin-top: 24px;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    font-size: 0.95rem;
+    color: var(--text-light);
+    border-bottom: 1px solid var(--border);
+}
+
+.summary-row.total {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--primary);
+    border-bottom: none;
+    padding-top: 16px;
+}
+
+.empty-cart {
+    text-align: center;
+    padding: 80px 24px;
+}
+
+.empty-cart i {
+    font-size: 4rem;
+    color: var(--border);
+    margin-bottom: 20px;
+}
+
+.empty-cart h3 {
+    font-size: 1.5rem;
+    color: var(--primary);
+    margin-bottom: 12px;
+}
+
+.empty-cart p {
+    color: var(--text-muted);
+    margin-bottom: 24px;
+}
+
+/* ========== CHECKOUT ========== */
+.checkout-layout {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 32px;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 24px;
+}
+
+.checkout-form h2 {
+    font-size: 1.5rem;
+    color: var(--primary);
+    margin-bottom: 24px;
+}
+
+.checkout-section {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 28px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    margin-bottom: 24px;
+}
+
+.checkout-section h3 {
+    font-size: 1.1rem;
+    color: var(--primary);
+    margin-bottom: 20px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+}
+
+.checkout-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.checkout-summary {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 28px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    height: fit-content;
+    position: sticky;
+    top: 96px;
+}
+
+.checkout-summary h3 {
+    font-size: 1.1rem;
+    color: var(--primary);
+    margin-bottom: 20px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+}
+
+.checkout-item {
+    display: flex;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.checkout-item img {
+    width: 50px; height: 50px;
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+}
+
+.checkout-item-info h4 {
+    font-size: 0.85rem;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+}
+
+.checkout-item-info p {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.checkout-item-price {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--primary);
+    margin-left: auto;
+}
+
+.payment-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.payment-option {
+    border: 2px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.payment-option:hover, .payment-option.active {
+    border-color: var(--accent);
+    background: var(--bg-warm);
+}
+
+.payment-option i {
+    font-size: 1.5rem;
+    color: var(--primary);
+    margin-bottom: 8px;
+    display: block;
+}
+
+.payment-option span {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text);
+}
+
+/* ========== ACCOUNT ========== */
+.account-layout {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 32px;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 24px;
+}
+
+.account-sidebar {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    height: fit-content;
+}
+
+.account-avatar {
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: var(--white);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+.account-sidebar h3 {
+    font-size: 1.1rem;
+    margin-bottom: 4px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+}
+
+.account-sidebar p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+}
+
+.account-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.account-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border-radius: var(--radius-sm);
+    font-size: 0.9rem;
+    color: var(--text-light);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.account-menu-item:hover, .account-menu-item.active {
+    background: var(--bg-warm);
+    color: var(--primary);
+}
+
+.account-content {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 32px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+
+.account-content h2 {
+    font-size: 1.5rem;
+    color: var(--primary);
+    margin-bottom: 24px;
+}
+
+.order-card {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 20px;
+    margin-bottom: 16px;
+    transition: var(--transition);
+}
+
+.order-card:hover {
+    border-color: var(--accent);
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.order-header h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+}
+
+.order-status {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.order-status.delivered { background: #d4edda; color: #155724; }
+.order-status.shipped { background: #cce5ff; color: #004085; }
+.order-status.pending { background: #fff3cd; color: #856404; }
+
+/* ========== OFFERS ========== */
+.offer-card {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    border-radius: var(--radius);
+    padding: 40px;
+    color: var(--white);
+    text-align: center;
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+}
+
+.offer-card::before {
+    content: '';
+    position: absolute;
+    top: -50%; right: -20%;
+    width: 300px; height: 300px;
+    background: rgba(201,169,110,0.1);
+    border-radius: 50%;
+}
+
+.offer-card h3 {
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 1;
+}
+
+.offer-card p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    position: relative;
+    z-index: 1;
+}
+
+.offer-card .btn {
+    margin-top: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+/* ========== TAGS / BADGES ========== */
+.tag {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.tag-gold { background: var(--accent); color: var(--primary); }
+.tag-warm { background: var(--bg-warm); color: var(--primary); }
+
+/* ========== NEWSLETTER ========== */
+.newsletter {
+    background: var(--primary);
+    padding: 60px 24px;
+    text-align: center;
+    color: var(--white);
+}
+
+.newsletter h2 {
+    font-size: 2rem;
+    margin-bottom: 12px;
+}
+
+.newsletter p {
+    opacity: 0.8;
+    margin-bottom: 28px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.newsletter-form {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.newsletter-form input {
+    flex: 1;
+    padding: 14px 20px;
+    border-radius: 30px;
+    border: none;
+    font-size: 0.95rem;
+    outline: none;
+}
+
+.newsletter-form button {
+    padding: 14px 28px;
+    background: var(--accent);
+    color: var(--primary);
+    border-radius: 30px;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.newsletter-form button:hover {
+    background: var(--accent-hover);
+}
+
+/* ========== FOOTER ========== */
+.footer {
+    background: var(--primary);
+    color: var(--white);
+    padding: 60px 24px 0;
+}
+
+.footer-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1.5fr;
+    gap: 40px;
+}
+
+.footer-brand .logo {
+    color: var(--white);
+    margin-bottom: 16px;
+}
+
+.footer-brand .logo-img {
+    height: 64px;
+}
+
+.footer-brand p {
+    font-size: 0.95rem;
+    opacity: 0.8;
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.social-links {
+    display: flex;
+    gap: 12px;
+}
+
+.social-links a {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--white);
+    transition: var(--transition);
+    font-size: 1rem;
+}
+
+.social-links a:hover {
+    background: var(--accent);
+    color: var(--primary);
+}
+
+.footer-links h4, .footer-contact h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    font-family: 'Inter', sans-serif;
+}
+
+.footer-links a {
+    display: block;
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin-bottom: 10px;
+    transition: var(--transition);
+}
+
+.footer-links a:hover {
+    opacity: 1;
+    color: var(--accent);
+}
+
+.footer-contact p {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.footer-contact i {
+    width: 20px;
+    color: var(--accent);
+}
+
+.footer-bottom {
+    max-width: 1280px;
+    margin: 40px auto 0;
+    padding: 20px 0;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    text-align: center;
+    font-size: 0.85rem;
+    opacity: 0.6;
+}
+
+/* ========== WHATSAPP FLOAT ========== */
+.whatsapp-float {
+    position: fixed;
+    bottom: 24px; right: 24px;
+    width: 56px; height: 56px;
+    background: #25D366;
+    color: var(--white);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.8rem;
+    box-shadow: 0 4px 16px rgba(37,211,102,0.4);
+    z-index: 999;
+    transition: var(--transition);
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 24px rgba(37,211,102,0.5);
+}
+
+/* ========== TOAST ========== */
+.toast {
+    position: fixed;
+    bottom: 96px; right: 24px;
+    background: var(--primary);
+    color: var(--white);
+    padding: 14px 24px;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    z-index: 1001;
+    transform: translateX(150%);
+    transition: transform 0.4s ease;
+    box-shadow: var(--shadow-hover);
+}
+
+.toast.show { transform: translateX(0); }
+
+.toast i { color: #2ecc71; }
+
+/* ========== ADMIN PANEL ========== */
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--white);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    font-size: 0.9rem;
+}
+
+.admin-table th, .admin-table td {
+    padding: 14px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+}
+
+.admin-table th {
+    background: var(--primary);
+    color: var(--white);
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.admin-table tr:hover { background: var(--bg-warm); }
+
+.admin-table img {
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.admin-btn {
+    width: 32px; height: 32px;
+    border-radius: 6px;
+    display: inline-flex; align-items: center; justify-content: center;
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 0.85rem;
+    margin-right: 4px;
+}
+
+.admin-btn.edit {
+    background: #e3f2fd;
+    color: #1976d2;
+}
+
+.admin-btn.edit:hover { background: #1976d2; color: var(--white); }
+
+.admin-btn.delete {
+    background: #ffebee;
+    color: #c62828;
+}
+
+.admin-btn.delete:hover { background: #c62828; color: var(--white); }
+
+.admin-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-right: 4px;
+}
+
+.admin-badge.new { background: #e8f5e9; color: #2e7d32; }
+.admin-badge.sale { background: #ffebee; color: #c62828; }
+.admin-badge.low { background: #fff3e0; color: #ef6c00; }
+
+.admin-form .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.admin-form .form-group {
+    margin-bottom: 20px;
+}
+
+.admin-form .form-group label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 6px;
+}
+
+.admin-form .form-group input,
+.admin-form .form-group textarea,
+.admin-form .form-group select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: 0.95rem;
+    font-family: inherit;
+    outline: none;
+    transition: var(--transition);
+    background: var(--bg);
+}
+
+.admin-form .form-group input:focus,
+.admin-form .form-group textarea:focus,
+.admin-form .form-group select:focus {
+    border-color: var(--accent);
+    background: var(--white);
+}
+
+.admin-form .form-group textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* --- Image Upload UI --- */
+.image-upload-group {
+    margin-bottom: 24px !important;
+}
+
+.image-upload-group label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 8px;
+    display: block;
+}
+
+.image-upload-area {
+    border: 2px dashed var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+    background: var(--bg);
+    transition: var(--transition);
+}
+
+.image-upload-area:hover {
+    border-color: var(--accent);
+    background: var(--white);
+}
+
+.image-upload-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 24px 16px;
+    cursor: pointer;
+    color: var(--text-muted);
+    transition: var(--transition);
+}
+
+.image-upload-placeholder:hover {
+    color: var(--accent);
+}
+
+.image-upload-placeholder i {
+    font-size: 2rem;
+}
+
+.image-upload-placeholder span {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.image-preview-item {
+    position: relative;
+    display: inline-block;
+    margin: 6px;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    border: 2px solid var(--border);
+    transition: var(--transition);
+}
+
+.image-preview-item:hover {
+    border-color: var(--accent);
+}
+
+.image-preview-item.main-preview {
+    width: 100%;
+    max-width: 300px;
+}
+
+.image-preview-item.extra-preview {
+    width: calc(33.33% - 12px);
+    max-width: 160px;
+}
+
+.image-preview-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    aspect-ratio: 5/6;
+    object-fit: cover;
+}
+
+.image-remove-btn {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    transition: var(--transition);
+    z-index: 2;
+}
+
+.image-remove-btn:hover {
+    background: #e74c3c;
+    transform: scale(1.1);
+}
+
+.existing-extra-images,
+#extraImagePreviews {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-bottom: 8px;
+}
+
+@media (max-width: 480px) {
+    .image-preview-item.extra-preview {
+        width: calc(50% - 8px);
+    }
+}
+
+.btn-danger {
+    background: #e74c3c;
+    color: var(--white);
+}
+
+.btn-danger:hover {
+    background: #c0392b;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .admin-form .form-row { grid-template-columns: 1fr; }
+    .admin-table { font-size: 0.8rem; }
+    .admin-table th, .admin-table td { padding: 10px 8px; }
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 1024px) {
+    .product-grid { grid-template-columns: repeat(3, 1fr); }
+    .category-grid { grid-template-columns: repeat(3, 1fr); }
+    .reviews-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-container { grid-template-columns: 1fr 1fr; }
+    .shop-layout { grid-template-columns: 200px 1fr; }
+    .checkout-layout { grid-template-columns: 1fr; }
+    .account-layout { grid-template-columns: 200px 1fr; }
+    .product-detail { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 768px) {
+    .nav-links { display: none; }
+    .menu-toggle { display: flex; }
+    .product-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .category-grid { grid-template-columns: repeat(2, 1fr); }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .about-grid { grid-template-columns: 1fr; gap: 32px; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .collection-banner { grid-template-columns: 1fr; }
+    .collection-banner-img { min-height: 200px; }
+    .footer-container { grid-template-columns: 1fr; gap: 32px; }
+    .hero-buttons { flex-direction: column; align-items: center; }
+    .shop-layout { grid-template-columns: 1fr; }
+    .shop-sidebar { position: static; }
+    .product-detail { grid-template-columns: 1fr; gap: 24px; }
+    .account-layout { grid-template-columns: 1fr; }
+    .checkout-layout { grid-template-columns: 1fr; }
+    .checkout-summary { position: static; }
+    .checkout-form-row { grid-template-columns: 1fr; }
+    .newsletter-form { flex-direction: column; }
+    .about-stats { grid-template-columns: 1fr; }
+    .detail-buttons { flex-direction: column; }
+    .detail-buttons .btn { width: 100%; justify-content: center; }
+    .cart-item { grid-template-columns: 80px 1fr; }
+    .cart-item-actions { grid-column: 1 / -1; flex-direction: row; justify-content: space-between; }
+    .payment-options { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+    .product-grid { grid-template-columns: 1fr; }
+    .category-grid { grid-template-columns: 1fr; }
+    .section { padding: 48px 16px; }
+    .hero { min-height: 500px; height: auto; padding: 120px 0; }
+    .nav-container { padding: 0 16px; height: 64px; }
+    .logo { font-size: 1.2rem; }
+    .logo-icon { font-size: 1rem; }
+    .logo-img { height: 40px; }
+    .mobile-menu { top: 64px; }
+    .cart-item { grid-template-columns: 1fr; }
+    .cart-item img { width: 100%; height: 200px; }
+}
+
+</style>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo" onclick="app.navigate('home')">
+                <img src="data:image/jpeg;base64,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" alt="Pru's Closet" class="logo-img">
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="#" onclick="app.navigate('home')" class="nav-link active">Home</a>
+                <a href="#" onclick="app.navigate('shop')" class="nav-link">Shop</a>
+                <a href="#" onclick="app.navigate('new-arrivals')" class="nav-link">New Arrivals</a>
+                <a href="#" onclick="app.navigate('sale')" class="nav-link">Sale</a>
+                <a href="#" onclick="app.navigate('about')" class="nav-link">About</a>
+                <a href="#" onclick="app.navigate('contact')" class="nav-link">Contact</a>
+            </div>
+            <div class="nav-actions">
+                <button class="icon-btn" onclick="app.toggleSearch()">
+                    <i class="fas fa-search"></i>
+                </button>
+                <button class="icon-btn" onclick="app.navigate('account')">
+                    <i class="fas fa-user"></i>
+                </button>
+                <button class="icon-btn cart-btn" onclick="app.navigate('cart')">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </button>
+                <button class="menu-toggle" onclick="app.toggleMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Search Bar -->
+        <div class="search-bar" id="searchBar">
+            <div class="search-container">
+                <input type="text" placeholder="Search dresses and bags..." id="searchInput" onkeyup="app.handleSearch(event)">
+                <button onclick="app.performSearch()">
+                    <i class="fas fa-search"></i>
+                </button>
+                <button class="close-search" onclick="app.toggleSearch()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#" onclick="app.navigate('home'); app.toggleMenu()">Home</a>
+        <a href="#" onclick="app.navigate('shop'); app.toggleMenu()">Shop</a>
+        <a href="#" onclick="app.navigate('new-arrivals'); app.toggleMenu()">New Arrivals</a>
+        <a href="#" onclick="app.navigate('sale'); app.toggleMenu()">Sale</a>
+        <a href="#" onclick="app.navigate('about'); app.toggleMenu()">About</a>
+        <a href="#" onclick="app.navigate('contact'); app.toggleMenu()">Contact</a>
+        <a href="#" onclick="app.navigate('admin'); app.toggleMenu()" style="border-top:2px solid var(--border);margin-top:8px;padding-top:12px;opacity:0.7;">🔒 Admin</a>
+    </div>
+
+    <!-- Main Content Area -->
+    <main id="mainContent">
+        <!-- Views will be injected here by JavaScript -->
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" id="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="logo">
+                    <img src="data:image/jpeg;base64,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" alt="Pru's Closet" class="logo-img">
+                </div>
+                <p>Fashion that finds you. Curated style for the modern Kenyan woman.</p>
+                <div class="social-links">
+                    <a href="https://wa.me/254720664090" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://www.instagram.com/pru.s_closet?igsh=MWN2cmQ0YjFmaHRxNw%3D%3D" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@prus.closet?_r=1&amp;_t=ZS-98vwyARG04W" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>Shop</h4>
+                <a href="#" onclick="app.navigate('shop')">All Products</a>
+                <a href="#" onclick="app.navigate('shop', 'dresses')">Dresses</a>
+                <a href="#" onclick="app.navigate('shop', 'bags')">Bags</a>
+            </div>
+            <div class="footer-links">
+                <h4>Help</h4>
+                <a href="#" onclick="app.navigate('delivery')">Delivery Info</a>
+                <a href="#" onclick="app.navigate('contact')">Contact Us</a>
+                <a href="#" onclick="app.navigate('account')"><span data-account-label>My Account</span></a>
+                <a href="#" onclick="app.navigate('about')">About Us</a>
+            </div>
+            <div class="footer-links">
+                <h4>Owner</h4>
+                <a href="#" onclick="app.navigate('admin')">🔒 Admin Login</a>
+            </div>
+            <div class="footer-contact">
+                <h4>Contact</h4>
+                <p><i class="fab fa-whatsapp"></i> 0720 664 090</p>
+                <p><i class="fas fa-envelope"></i>Prudencekapkwang@gmail.com </p>
+                <p><i class="fas fa-map-marker-alt"></i> Bomet, Kenya</p>
+                <p><i class="fas fa-clock"></i> Deliveries: Tuesday &amp; Thursday</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Pru's Closet. All rights reserved. Fashion That Finds You. ✦</p>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/254720664090?text=Hi%20Pru's%20Closet!%20I'm%20interested%20in%20your%20products." class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Item added to cart!</span>
+    </div>
+
+    <script>
+// ==========================================
+// Pru's Closet — Product Data & Content
+// ==========================================
+
+const INITIAL_PRODUCTS = [];
+
+// Customer reviews are submitted by real shoppers and stored on their device.
+function loadReviews() {
+    try {
+        const stored = localStorage.getItem('prusReviews');
+        if (stored) return JSON.parse(stored);
+    } catch(e) {}
+    return [];
+}
+
+function saveReviews(list) {
+    try { localStorage.setItem('prusReviews', JSON.stringify(list)); } catch(e) {}
+}
+
+let reviews = loadReviews();
+
+const categoryInfo = {
+    dresses: { emoji: "\u{1F457}", title: "Dresses", description: "Everyday, office and occasion dresses \u2014 hand-picked by Pru." },
+    bags: { emoji: "\u{1F45C}", title: "Bags", description: "Totes, handbags and clutches to finish off any look." }
+};
+
+// ==========================================
+// LocalStorage Data Persistence
+// ==========================================
+
+function loadProducts() {
+    try {
+        const stored = localStorage.getItem('prusProducts');
+        if (stored) return JSON.parse(stored);
+    } catch(e) {}
+    // First time — initialize with default data
+    saveProducts(INITIAL_PRODUCTS);
+    return [...INITIAL_PRODUCTS];
+}
+
+function saveProducts(products) {
+    try {
+        localStorage.setItem('prusProducts', JSON.stringify(products));
+    } catch(e) {}
+}
+
+function resetProducts() {
+    localStorage.removeItem('prusProducts');
+    location.reload();
+}
+
+// Make productData a live reference
+let productData = loadProducts();
+
+// ==========================================
+// Shared Store (cloud sync) — lets every visitor
+// see the products the owner adds, from any device.
+// Configure it once in Admin → Settings → Shared Store.
+// ==========================================
+
+const CLOUD_KEY = 'prusCloudConfig';
+
+// Optional: hard-code the store's project details here so sharing works
+// out of the box for every visitor without touching the admin panel.
+const CLOUD_DEFAULTS = { enabled: false, projectId: '', apiKey: '' };
+
+const cloud = {
+    cfg: null,
+    lastError: null,
+    get enabled() {
+        return !!(this.cfg && this.cfg.enabled && this.cfg.projectId && this.cfg.apiKey);
+    },
+    load() {
+        try {
+            const raw = localStorage.getItem(CLOUD_KEY);
+            if (raw) this.cfg = JSON.parse(raw);
+        } catch(e) {}
+        if (!this.cfg || !this.cfg.projectId) {
+            if (CLOUD_DEFAULTS.projectId) this.cfg = Object.assign({}, CLOUD_DEFAULTS);
+        }
+        if (!this.cfg) this.cfg = { enabled: false, projectId: '', apiKey: '' };
+        return this.cfg;
+    },
+    save(cfg) {
+        this.cfg = cfg;
+        try { localStorage.setItem(CLOUD_KEY, JSON.stringify(cfg)); } catch(e) {}
+    },
+    url(path) {
+        return 'https://firestore.googleapis.com/v1/projects/'
+            + encodeURIComponent(this.cfg.projectId)
+            + '/databases/(default)/documents/' + path;
+    },
+    key() { return 'key=' + encodeURIComponent(this.cfg.apiKey); },
+    async list(coll) {
+        const res = await fetch(this.url(coll) + '?' + this.key() + '&pageSize=300');
+        if (!res.ok) throw new Error('Could not read the shared store (' + res.status + ')');
+        const data = await res.json();
+        return (data.documents || []).map(d => {
+            try {
+                return JSON.parse(d.fields && d.fields.json ? d.fields.json.stringValue : 'null');
+            } catch(e) { return null; }
+        }).filter(Boolean);
+    },
+    async put(coll, id, obj) {
+        const res = await fetch(this.url(coll + '/' + encodeURIComponent(id)) + '?' + this.key(), {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ fields: {
+                json: { stringValue: JSON.stringify(obj) },
+                updated: { stringValue: new Date().toISOString() }
+            } })
+        });
+        if (!res.ok) throw new Error('Could not save to the shared store (' + res.status + ')');
+        return true;
+    },
+    async remove(coll, id) {
+        const res = await fetch(this.url(coll + '/' + encodeURIComponent(id)) + '?' + this.key(), { method: 'DELETE' });
+        if (!res.ok && res.status !== 404) throw new Error('Could not remove from the shared store (' + res.status + ')');
+        return true;
+    }
+};
+cloud.load();
+
+// Pull the live catalogue (and reviews) that everyone shares.
+async function pullSharedStore() {
+    if (!cloud.enabled) return false;
+    const [prods, revs] = await Promise.all([
+        cloud.list('products'),
+        cloud.list('reviews').catch(() => null)
+    ]);
+    productData = prods;
+    saveProducts(productData);
+    if (revs) { reviews = revs.sort((a, b) => (b.ts || 0) - (a.ts || 0)); saveReviews(reviews); }
+    return true;
+}
+
+// Push everything currently on this device up to the shared store.
+async function pushSharedStore() {
+    if (!cloud.enabled) throw new Error('Shared store is not switched on yet.');
+    for (const p of productData) await cloud.put('products', p.id, p);
+    for (const r of reviews) { if (r.id) await cloud.put('reviews', r.id, r); }
+    return productData.length;
+}
+
+// ==========================================
+// Delivery — every county in Kenya
+// ==========================================
+
+// Areas inside Bomet County (home turf — hand delivered Tue & Thu)
+const BOMET_AREAS = [
+    { name: 'Bomet Town (CBD)', fee: 0 },
+    { name: 'Silibwet', fee: 100 },
+    { name: 'Tenwek', fee: 100 },
+    { name: 'Merigi / Kembu', fee: 150 },
+    { name: 'Longisa', fee: 150 },
+    { name: 'Mogogosiek', fee: 200 },
+    { name: 'Sotik / Kaplong', fee: 200 },
+    { name: 'Ndanai', fee: 200 },
+    { name: 'Mulot', fee: 200 },
+    { name: 'Chepalungu / Sigor', fee: 250 },
+    { name: 'Other part of Bomet County', fee: 250 }
+];
+
+// mode: 'local' = our own delivery, 'courier' = matatu/parcel courier,
+// 'coach' = long distance by Easy Coach / Ena Coach
+const COUNTIES = [
+    { name: 'Bomet', fee: 0, mode: 'local' },
+    { name: 'Baringo', fee: 450, mode: 'coach' },
+    { name: 'Bungoma', fee: 400, mode: 'courier' },
+    { name: 'Busia', fee: 450, mode: 'courier' },
+    { name: 'Elgeyo Marakwet', fee: 400, mode: 'courier' },
+    { name: 'Embu', fee: 500, mode: 'coach' },
+    { name: 'Garissa', fee: 700, mode: 'coach' },
+    { name: 'Homa Bay', fee: 400, mode: 'courier' },
+    { name: 'Isiolo', fee: 600, mode: 'coach' },
+    { name: 'Kajiado', fee: 500, mode: 'coach' },
+    { name: 'Kakamega', fee: 400, mode: 'courier' },
+    { name: 'Kericho', fee: 250, mode: 'courier' },
+    { name: 'Kiambu', fee: 500, mode: 'coach' },
+    { name: 'Kilifi', fee: 700, mode: 'coach' },
+    { name: 'Kirinyaga', fee: 500, mode: 'coach' },
+    { name: 'Kisii', fee: 300, mode: 'courier' },
+    { name: 'Kisumu', fee: 350, mode: 'courier' },
+    { name: 'Kitui', fee: 600, mode: 'coach' },
+    { name: 'Kwale', fee: 700, mode: 'coach' },
+    { name: 'Laikipia', fee: 500, mode: 'coach' },
+    { name: 'Lamu', fee: 800, mode: 'coach' },
+    { name: 'Machakos', fee: 500, mode: 'coach' },
+    { name: 'Makueni', fee: 550, mode: 'coach' },
+    { name: 'Mandera', fee: 900, mode: 'coach' },
+    { name: 'Marsabit', fee: 800, mode: 'coach' },
+    { name: 'Meru', fee: 550, mode: 'coach' },
+    { name: 'Migori', fee: 400, mode: 'courier' },
+    { name: 'Mombasa', fee: 700, mode: 'coach' },
+    { name: "Murang'a", fee: 500, mode: 'coach' },
+    { name: 'Nairobi', fee: 450, mode: 'coach' },
+    { name: 'Nakuru', fee: 300, mode: 'courier' },
+    { name: 'Nandi', fee: 350, mode: 'courier' },
+    { name: 'Narok', fee: 300, mode: 'courier' },
+    { name: 'Nyamira', fee: 300, mode: 'courier' },
+    { name: 'Nyandarua', fee: 450, mode: 'coach' },
+    { name: 'Nyeri', fee: 500, mode: 'coach' },
+    { name: 'Samburu', fee: 650, mode: 'coach' },
+    { name: 'Siaya', fee: 400, mode: 'courier' },
+    { name: 'Taita Taveta', fee: 700, mode: 'coach' },
+    { name: 'Tana River', fee: 750, mode: 'coach' },
+    { name: 'Tharaka Nithi', fee: 550, mode: 'coach' },
+    { name: 'Trans Nzoia', fee: 450, mode: 'courier' },
+    { name: 'Turkana', fee: 800, mode: 'coach' },
+    { name: 'Uasin Gishu', fee: 350, mode: 'courier' },
+    { name: 'Vihiga', fee: 400, mode: 'courier' },
+    { name: 'Wajir', fee: 850, mode: 'coach' },
+    { name: 'West Pokot', fee: 600, mode: 'coach' }
+];
+
+const MODE_NOTE = {
+    local: 'Hand delivered by us on Tuesday or Thursday.',
+    courier: 'Sent by matatu parcel service — usually next delivery day.',
+    coach: 'Sent long distance by Easy Coach or Ena Coach — arrival follows the bus schedule.'
+};
+
+function getCounty(name) {
+    return COUNTIES.find(c => c.name === name) || COUNTIES[0];
+}
+
+function getBometArea(name) {
+    return BOMET_AREAS.find(a => a.name === name) || BOMET_AREAS[0];
+}
+
+</script>
+    <script>
+// ==========================================
+// Pru's Closet — Application Logic
+// ==========================================
+
+// --- Image Upload & Compression Utilities ---
+function compressImage(file, maxWidth = 800, quality = 0.7) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            const img = new Image();
+            img.onload = () => {
+                const canvas = document.createElement('canvas');
+                let w = img.width, h = img.height;
+                if (w > maxWidth) { h = Math.round(h * maxWidth / w); w = maxWidth; }
+                canvas.width = w;
+                canvas.height = h;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0, w, h);
+                resolve(canvas.toDataURL('image/jpeg', quality));
+            };
+            img.onerror = () => reject(new Error('Failed to load image'));
+            img.src = e.target.result;
+        };
+        reader.onerror = () => reject(new Error('Failed to read file'));
+        reader.readAsDataURL(file);
+    });
+}
+
+function readFileAsDataURL(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = (e) => resolve(e.target.result);
+        reader.onerror = () => reject(new Error('Failed to read file'));
+        reader.readAsDataURL(file);
+    });
+}
+
+// Stores pending base64 images before save
+const _pendingImages = { main: null, extra: [] };
+
+const app = {
+    currentView: 'home',
+    cart: [],
+    selectedProduct: null,
+    selectedColor: null,
+    selectedSize: null,
+    selectedQty: 1,
+    currentImage: 0,
+    accountTab: 'orders',
+    authMode: 'login',
+    delivery: { county: 'Bomet', area: 'Bomet Town (CBD)' },
+    isAdmin: false,
+    adminTab: 'products',
+    editingProduct: null,
+    _editProductImages: null, // temp storage for edit mode images
+
+    init() {
+        this.loadCart();
+        this.loadDelivery();
+        this.checkAdminSession();
+        this.navigate('home');
+        this.updateCartCount();
+        this.updateAccountLink();
+        this.syncFromSharedStore();
+
+        window.addEventListener('popstate', (e) => {
+            if (e.state && e.state.view) {
+                this.render(e.state.view, e.state.data, false);
+            }
+        });
+    },
+
+    // Escapes any text before it goes into the page.
+    esc(str) {
+        return String(str == null ? '' : str)
+            .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+    },
+
+    // Quietly refresh the catalogue from the shared store so every
+    // visitor sees what the owner has added, on any device.
+    async syncFromSharedStore(showFeedback = false) {
+        if (!cloud.enabled) {
+            if (showFeedback) this.showToast('Shared store is not switched on yet.');
+            return false;
+        }
+        try {
+            await pullSharedStore();
+            if (this.currentView === 'home' || this.currentView === 'shop' || this.currentView === 'new-arrivals' || this.currentView === 'sale' || this.currentView === 'admin') {
+                this.render(this.currentView, null, false);
+            }
+            if (showFeedback) this.showToast('Catalogue updated \u2014 ' + productData.length + ' item(s) loaded.');
+            return true;
+        } catch(e) {
+            if (showFeedback) this.showToast(e.message || 'Could not reach the shared store.');
+            return false;
+        }
+    },
+
+    // --- Admin Session ---
+    checkAdminSession() {
+        const session = localStorage.getItem('prusAdminSession');
+        if (session) {
+            try {
+                const data = JSON.parse(session);
+                if (data.expires > Date.now()) this.isAdmin = true;
+                else localStorage.removeItem('prusAdminSession');
+            } catch(e) {}
+        }
+    },
+
+    // --- Navigation ---
+    navigate(view, data = null, pushState = true) {
+        this.currentView = view;
+        this.render(view, data, pushState);
+        window.scrollTo(0, 0);
+
+        document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+        const navMap = {
+            'home': 0, 'shop': 1, 'new-arrivals': 2, 'sale': 3, 'about': 4, 'contact': 5
+        };
+        const links = document.querySelectorAll('.nav-link');
+        if (navMap[view] !== undefined && links[navMap[view]]) {
+            links[navMap[view]].classList.add('active');
+        }
+
+        document.getElementById('mobileMenu').classList.remove('active');
+    },
+
+    render(view, data, pushState = true) {
+        const main = document.getElementById('mainContent');
+        if (pushState) history.pushState({ view, data }, '', '#');
+
+        switch(view) {
+            case 'home': main.innerHTML = this.renderHome(); break;
+            case 'shop': main.innerHTML = this.renderShop(data); break;
+            case 'product': main.innerHTML = this.renderProduct(data); break;
+            case 'cart': main.innerHTML = this.renderCart(); break;
+            case 'checkout': main.innerHTML = this.renderCheckout(); break;
+            case 'new-arrivals': main.innerHTML = this.renderNewArrivals(); break;
+            case 'sale': main.innerHTML = this.renderSale(); break;
+            case 'about': main.innerHTML = this.renderAbout(); break;
+            case 'contact': main.innerHTML = this.renderContact(); break;
+            case 'delivery': main.innerHTML = this.renderDelivery(); break;
+            case 'account': main.innerHTML = this.renderAccount(); break;
+            case 'search': main.innerHTML = this.renderSearch(data); break;
+            case 'admin': main.innerHTML = this.renderAdmin(); break;
+            default: main.innerHTML = this.renderHome();
+        }
+    },
+
+    // --- Home Page ---
+    renderHome() {
+        const newArrivals = productData.filter(p => p.isNew).slice(0, 4);
+        const bestSellers = productData.filter(p => p.tag === 'Best Seller').slice(0, 4);
+        const prusPicks = productData.filter(p => p.tag === "Pru's Pick").slice(0, 4);
+
+        return `
+            <section class="hero">
+                <div class="hero-bg"></div>
+                <div class="hero-overlay"></div>
+                <div class="hero-content">
+                    <span class="hero-tag">✦ New Collection 2026</span>
+                    <h1>Pru's Closet<br><span>Fashion That Finds You</span></h1>
+                    <p>Your style, your closet, your vibe. Curated fashion for the modern Kenyan woman — from thrift treasures to statement pieces.</p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary" onclick="app.navigate('shop')">
+                            <i class="fas fa-shopping-bag"></i> Shop Now
+                        </button>
+                        <button class="btn btn-outline" onclick="app.navigate('new-arrivals')">
+                            <i class="fas fa-sparkles"></i> New Arrivals
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="section-header">
+                    <h2>Shop by Category</h2>
+                    <p>Find exactly what you're looking for</p>
+                </div>
+                <div class="category-grid">
+                    ${Object.entries(categoryInfo).map(([key, info]) => {
+                        const first = productData.filter(p => p.category === key)[0];
+                        const media = first && first.image
+                            ? '<img src="' + first.image + '" alt="' + info.title + '">'
+                            : '<div class="category-placeholder"><span>' + info.emoji + '</span></div>';
+                        return `
+                        <div class="category-card" onclick="app.navigate('shop', '${key}')">
+                            ${media}
+                            <div class="category-card-overlay">
+                                <span class="emoji">${info.emoji}</span>
+                                <h3>${info.title}</h3>
+                                <span>Explore →</span>
+                            </div>
+                        </div>
+                    `;}).join('')}
+                </div>
+            </section>
+
+            <div class="picks-section">
+                <section class="section">
+                    <div class="section-header">
+                        <h2>✦ Pru's Picks</h2>
+                        <p>My personal favourites — hand-selected with love</p>
+                    </div>
+                    <div class="product-grid">
+                        ${prusPicks.length ? prusPicks.map(p => this.renderProductCard(p)).join('') : this.renderEmptyGrid()}
+                    </div>
+                </section>
+            </div>
+
+            <section class="section">
+                <div class="section-header">
+                    <h2>New Arrivals</h2>
+                    <p>Fresh drops just landed in the closet</p>
+                </div>
+                <div class="product-grid">
+                    ${newArrivals.length ? newArrivals.map(p => this.renderProductCard(p)).join('') : this.renderEmptyGrid()}
+                </div>
+                <div style="text-align:center; margin-top:40px;">
+                    <button class="btn btn-primary" onclick="app.navigate('new-arrivals')">
+                        View All New Arrivals <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </section>
+
+            <section class="section" style="padding-top:40px;">
+                <div class="collection-banner">
+                    <div class="collection-banner-text">
+                        <span class="tag tag-gold">Trending Now</span>
+                        <h3 style="margin-top:12px;">Under KSh 1,500</h3>
+                        <p>Style doesn't have to break the bank. Discover our curated selection of affordable pieces that look anything but cheap.</p>
+                        <button class="btn btn-primary" onclick="app.navigate('shop')" style="width:fit-content; margin-top:8px;">
+                            Shop the Collection
+                        </button>
+                    </div>
+                    <div class="collection-banner-img"></div>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="section-header">
+                    <h2>Best Sellers</h2>
+                    <p>Customer favourites flying off the shelves</p>
+                </div>
+                <div class="product-grid">
+                    ${bestSellers.length ? bestSellers.map(p => this.renderProductCard(p)).join('') : this.renderEmptyGrid()}
+                </div>
+            </section>
+
+            <section class="section" style="background:var(--bg-warm); border-radius:var(--radius); margin:0 24px 80px; max-width:1280px;">
+                <div class="section-header">
+                    <h2>What Our Customers Say</h2>
+                    <p>Reviews written by real Pru's Closet shoppers</p>
+                </div>
+                ${reviews.length ? `
+                <div class="reviews-grid">
+                    ${reviews.slice(0, 3).map(r => this.renderReviewCard(r)).join('')}
+                </div>
+                <div style="text-align:center; margin-top:40px;">
+                    <button class="btn btn-outline" onclick="app.navigate('about')" style="color:var(--primary); border-color:var(--primary);">
+                        Read All Reviews <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>` : `
+                <div style="text-align:center; padding:24px; color:var(--text-muted);">
+                    <p>No reviews yet — be the first to share your experience!</p>
+                </div>`}
+                ${this.renderReviewForm()}
+            </section>
+
+            <section class="newsletter">
+                <h2>Join the Pru's Closet Family</h2>
+                <p>Get exclusive offers, early access to new drops, and style tips delivered to your inbox.</p>
+                <div class="newsletter-form">
+                    <input type="email" placeholder="Enter your email address">
+                    <button onclick="app.showToast('Welcome to the family! 🎉')">Subscribe</button>
+                </div>
+            </section>
+        `;
+    },
+
+    renderProductCard(p) {
+        return `
+            <div class="product-card" onclick="app.navigate('product', '${p.id}')">
+                <div class="product-image">
+                    <img src="${p.image}" alt="${p.name}" loading="lazy">
+                    ${p.badge ? `<span class="product-badge ${p.badge.toLowerCase()}">${p.badge}</span>` : ''}
+                    <div class="product-actions">
+                        <button onclick="event.stopPropagation(); app.addToCart('${p.id}')" title="Add to Cart">
+                            <i class="fas fa-shopping-bag"></i>
+                        </button>
+                        <button onclick="event.stopPropagation(); app.showToast('Added to wishlist!')" title="Wishlist">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    ${p.tag ? `<div class="product-tag">${p.tag}</div>` : ''}
+                    <div class="product-name">${p.name}</div>
+                    <div class="product-price-row">
+                        <span class="product-price">KSh ${p.price.toLocaleString()}</span>
+                        ${p.oldPrice ? `<span class="product-old-price">KSh ${p.oldPrice.toLocaleString()}</span>` : ''}
+                    </div>
+                    <div class="product-rating">
+                        <span class="stars">${'★'.repeat(Math.floor(p.rating))}${p.rating % 1 >= 0.5 ? '½' : ''}</span>
+                        <span>(${p.reviews})</span>
+                    </div>
+                </div>
+            </div>
+        `;
+    },
+
+    renderEmptyGrid(msg = "New pieces are added every week \u2014 follow Pru's Closet on Instagram &amp; TikTok to catch the latest drops.") {
+        return `
+            <div style="grid-column:1/-1; text-align:center; padding:48px 24px; color:var(--text-muted);">
+                <div style="font-size:2.5rem; margin-bottom:12px;">\u2726</div>
+                <p>${msg}</p>
+            </div>
+        `;
+    },
+
+    renderReviewForm() {
+        return `
+            <div class="review-form">
+                <h3>Leave a Review</h3>
+                <p class="review-form-intro">Bought something from Pru's Closet? Share your experience so other shoppers know what to expect.</p>
+                <div class="form-group">
+                    <label for="rvName">Your Name</label>
+                    <input type="text" id="rvName" placeholder="e.g. Faith K." maxlength="40">
+                </div>
+                <div class="form-group">
+                    <label for="rvProduct">What Did You Buy?</label>
+                    <input type="text" id="rvProduct" placeholder="e.g. Floral maxi dress" maxlength="60">
+                </div>
+                <div class="form-group">
+                    <label for="rvRating">Your Rating</label>
+                    <select id="rvRating">
+                        <option value="5">\u2605\u2605\u2605\u2605\u2605 \u2014 Loved it</option>
+                        <option value="4">\u2605\u2605\u2605\u2605 \u2014 Very good</option>
+                        <option value="3">\u2605\u2605\u2605 \u2014 Good</option>
+                        <option value="2">\u2605\u2605 \u2014 Okay</option>
+                        <option value="1">\u2605 \u2014 Not for me</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="rvText">Your Review</label>
+                    <textarea id="rvText" placeholder="Tell us about the fit, quality and delivery..." maxlength="500"></textarea>
+                </div>
+                <button class="btn btn-primary" onclick="app.submitReview()">
+                    <i class="fas fa-paper-plane"></i> Post My Review
+                </button>
+            </div>
+        `;
+    },
+
+    escapeText(str) {
+        return String(str)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;');
+    },
+
+    submitReview() {
+        const nameEl = document.getElementById('rvName');
+        const prodEl = document.getElementById('rvProduct');
+        const textEl = document.getElementById('rvText');
+        const rateEl = document.getElementById('rvRating');
+        if (!nameEl || !textEl) return;
+
+        const name = nameEl.value.trim();
+        const product = prodEl ? prodEl.value.trim() : '';
+        const text = textEl.value.trim();
+
+        if (!name) { this.showToast('Please add your name.'); return; }
+        if (text.length < 10) { this.showToast('Please write a few more words about your experience.'); return; }
+
+        const u = this.currentUser();
+        const review = {
+            id: 'rv' + Date.now(),
+            ts: Date.now(),
+            name: this.escapeText(name).slice(0, 40),
+            product: this.escapeText(product || 'Pru\'s Closet order').slice(0, 60),
+            text: this.escapeText(text).slice(0, 600),
+            rating: parseInt(rateEl ? rateEl.value : '5', 10) || 5,
+            date: new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }),
+            image: null,
+            by: u ? u.email : ''
+        };
+        reviews.unshift(review);
+        saveReviews(reviews);
+        if (cloud.enabled) cloud.put('reviews', review.id, review).catch(() => {});
+        this.showToast('Thank you! Your review is now on the site. \uD83D\uDC9D');
+        this.render(this.currentView, null, false);
+    },
+
+    renderReviewCard(r) {
+        return `
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="review-avatar">${r.name.split(' ').map(n => n[0]).join('')}</div>
+                    <div class="review-meta">
+                        <h4>${r.name}</h4>
+                        <span>${r.product} • ${r.date}</span>
+                    </div>
+                </div>
+                <div class="review-stars">${'★'.repeat(r.rating)}</div>
+                <div class="review-text">${r.text}</div>
+                ${r.image ? `<div class="review-image"><img src="${r.image}" alt="Review"></div>` : ''}
+            </div>
+        `;
+    },
+
+    // --- Shop Page ---
+    renderShop(category = null) {
+        const cats = Object.keys(categoryInfo);
+        const activeCat = category || 'all';
+        let filtered = category ? productData.filter(p => p.category === category) : productData;
+
+        return `
+            <section class="shop-layout">
+                <aside class="shop-sidebar">
+                    <div class="sidebar-title">Categories</div>
+                    <div class="sidebar-category ${activeCat === 'all' ? 'active' : ''}" onclick="app.navigate('shop', null)">
+                        <span>✦</span> All Products
+                    </div>
+                    ${cats.map(c => `
+                        <div class="sidebar-category ${activeCat === c ? 'active' : ''}" onclick="app.navigate('shop', '${c}')">
+                            <span class="emoji">${categoryInfo[c].emoji}</span> ${categoryInfo[c].title}
+                        </div>
+                    `).join('')}
+                </aside>
+                <div>
+                    <div class="shop-header">
+                        <div>
+                            <h2>${category ? categoryInfo[category].emoji + ' ' + categoryInfo[category].title : 'All Products'}</h2>
+                            <span>${filtered.length} items</span>
+                        </div>
+                        <select class="sort-select" onchange="app.sortProducts(this.value)">
+                            <option value="featured">Featured</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                            <option value="newest">Newest</option>
+                            <option value="rating">Top Rated</option>
+                        </select>
+                    </div>
+                    <div class="product-grid" id="shopGrid">
+                        ${filtered.map(p => this.renderProductCard(p)).join('')}
+                    </div>
+                    ${filtered.length === 0 ? '<div style="text-align:center;padding:60px 24px;"><h3>No products found</h3></div>' : ''}
+                </div>
+            </section>
+        `;
+    },
+
+    sortProducts(sort) {
+        const grid = document.getElementById('shopGrid');
+        if (!grid) return;
+        let items = [...productData];
+        if (this.currentView === 'shop') {
+            const activeCat = document.querySelector('.sidebar-category.active');
+            if (activeCat && activeCat.textContent.includes('All') === false) {
+                const cat = Object.keys(categoryInfo).find(c => activeCat.textContent.includes(categoryInfo[c].title));
+                if (cat) items = items.filter(p => p.category === cat);
+            }
+        }
+
+        switch(sort) {
+            case 'price-low': items.sort((a,b) => a.price - b.price); break;
+            case 'price-high': items.sort((a,b) => b.price - a.price); break;
+            case 'newest': items.sort((a,b) => (b.isNew ? 1 : 0) - (a.isNew ? 1 : 0)); break;
+            case 'rating': items.sort((a,b) => b.rating - a.rating); break;
+        }
+
+        grid.innerHTML = items.map(p => this.renderProductCard(p)).join('');
+    },
+
+    // --- Product Detail Page ---
+    renderProduct(productId) {
+        const p = productData.find(x => x.id === productId);
+        if (!p) return this.renderShop();
+        this.selectedProduct = p;
+        this.selectedColor = p.colors[0] || null;
+        this.selectedSize = p.sizes[0] || null;
+        this.selectedQty = 1;
+        this.currentImage = 0;
+
+        const related = productData.filter(x => x.category === p.category && x.id !== p.id).slice(0, 4);
+
+        return `
+            <section class="product-detail">
+                <div class="product-gallery">
+                    <div class="main-image">
+                        <img src="${p.images[this.currentImage]}" alt="${p.name}" id="mainImage">
+                    </div>
+                    <div class="thumbnail-row">
+                        ${p.images.map((img, i) => `
+                            <img src="${img}" class="${i === 0 ? 'active' : ''}" onclick="app.setMainImage(${i})" alt="${p.name} ${i+1}">
+                        `).join('')}
+                    </div>
+                </div>
+                <div class="product-detail-info">
+                    ${p.tag ? `<div class="product-tag">${p.tag}</div>` : ''}
+                    <h1>${p.name}</h1>
+                    <div class="product-detail-price">
+                        KSh ${p.price.toLocaleString()}
+                        ${p.oldPrice ? `<span class="old">KSh ${p.oldPrice.toLocaleString()}</span>` : ''}
+                    </div>
+                    <div class="product-detail-rating">
+                        <span class="stars">${'★'.repeat(Math.floor(p.rating))}${p.rating % 1 >= 0.5 ? '½' : ''}</span>
+                        <span>${p.rating} out of 5</span>
+                        <span>•</span>
+                        <span>${p.reviews} reviews</span>
+                    </div>
+                    <div class="stock-indicator ${p.stock < 6 ? 'low' : 'in-stock'}">
+                        ${p.stock < 6 ? `Only ${p.stock} left in stock — hurry!` : 'In stock & ready to ship'}
+                    </div>
+
+                    ${p.colors.length > 0 ? `
+                        <div class="detail-section">
+                            <h4>Color: <span style="font-weight:400; color:var(--text-light);">${this.selectedColor}</span></h4>
+                            <div class="color-options">
+                                ${p.colors.map(c => `
+                                    <span class="color-option ${this.selectedColor === c ? 'active' : ''}" onclick="app.selectColor('${c}')">${c}</span>
+                                `).join('')}
+                            </div>
+                        </div>
+                    ` : ''}
+
+                    ${p.sizes.length > 0 ? `
+                        <div class="detail-section">
+                            <h4>Size</h4>
+                            <div class="size-options">
+                                ${p.sizes.map(s => `
+                                    <span class="size-option ${this.selectedSize === s ? 'active' : ''}" onclick="app.selectSize('${s}')">${s}</span>
+                                `).join('')}
+                            </div>
+                        </div>
+                    ` : ''}
+
+                    <div class="detail-section">
+                        <h4>Quantity</h4>
+                        <div class="quantity-selector">
+                            <button onclick="app.changeQty(-1)">−</button>
+                            <input type="text" value="${this.selectedQty}" readonly id="qtyInput">
+                            <button onclick="app.changeQty(1)">+</button>
+                        </div>
+                    </div>
+
+                    <div class="detail-section">
+                        <h4>Description</h4>
+                        <p style="color:var(--text-light); line-height:1.7;">${p.description}</p>
+                    </div>
+
+                    <div class="detail-buttons">
+                        <button class="btn btn-primary" onclick="app.addToCart('${p.id}', true)" style="flex:1;">
+                            <i class="fas fa-shopping-bag"></i> Add to Cart
+                        </button>
+                        <a href="https://wa.me/254720664090?text=Hi%20Pru's%20Closet!%20I'm%20interested%20in%20the%20${encodeURIComponent(p.name)}%20(KSh%20${p.price}).%20Please%20send%20me%20more%20details."
+                           class="btn btn-whatsapp" target="_blank">
+                            <i class="fab fa-whatsapp"></i> Order on WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="section-header">
+                    <h2>You May Also Like</h2>
+                    <p>More from ${categoryInfo[p.category].title}</p>
+                </div>
+                <div class="product-grid">
+                    ${related.map(r => this.renderProductCard(r)).join('')}
+                </div>
+            </section>
+        `;
+    },
+
+    setMainImage(index) {
+        this.currentImage = index;
+        const img = document.getElementById('mainImage');
+        if (img) img.src = this.selectedProduct.images[index];
+        document.querySelectorAll('.thumbnail-row img').forEach((el, i) => {
+            el.classList.toggle('active', i === index);
+        });
+    },
+
+    selectColor(color) {
+        this.selectedColor = color;
+        document.querySelectorAll('.color-option').forEach(el => {
+            el.classList.toggle('active', el.textContent === color);
+        });
+        document.querySelector('.detail-section h4 span').textContent = color;
+    },
+
+    selectSize(size) {
+        this.selectedSize = size;
+        document.querySelectorAll('.size-option').forEach(el => {
+            el.classList.toggle('active', el.textContent === size);
+        });
+    },
+
+    changeQty(delta) {
+        const newQty = this.selectedQty + delta;
+        if (newQty >= 1 && newQty <= this.selectedProduct.stock) {
+            this.selectedQty = newQty;
+            document.getElementById('qtyInput').value = newQty;
+        }
+    },
+
+    // --- Cart ---
+    addToCart(productId, withOptions = false) {
+        const p = productData.find(x => x.id === productId);
+        if (!p) return;
+
+        const existing = this.cart.find(c => c.id === productId && c.color === this.selectedColor && c.size === this.selectedSize);
+        const qty = withOptions ? this.selectedQty : 1;
+
+        if (existing) {
+            existing.qty += qty;
+        } else {
+            this.cart.push({
+                id: productId,
+                name: p.name,
+                price: p.price,
+                image: p.image,
+                color: this.selectedColor,
+                size: this.selectedSize,
+                qty: qty
+            });
+        }
+
+        this.saveCart();
+        this.updateCartCount();
+        this.showToast(`${p.name} added to cart!`);
+    },
+
+    removeFromCart(index) {
+        this.cart.splice(index, 1);
+        this.saveCart();
+        this.updateCartCount();
+        this.navigate('cart', null, false);
+    },
+
+    updateCartQty(index, delta) {
+        const item = this.cart[index];
+        const newQty = item.qty + delta;
+        if (newQty >= 1) {
+            item.qty = newQty;
+            this.saveCart();
+            this.updateCartCount();
+            this.navigate('cart', null, false);
+        }
+    },
+
+    // --- Delivery cost helpers (used by bag + checkout) ---
+    cartSubtotal() {
+        return this.cart.reduce((sum, c) => sum + (c.price * c.qty), 0);
+    },
+
+    deliveryInfo() {
+        const county = getCounty(this.delivery.county);
+        if (county.name === 'Bomet') {
+            const area = getBometArea(this.delivery.area);
+            return {
+                label: area.name + ', Bomet',
+                fee: area.fee,
+                note: area.fee === 0
+                    ? 'Free delivery \u2014 hand delivered inside Bomet town on Tuesday or Thursday.'
+                    : MODE_NOTE.local
+            };
+        }
+        return { label: county.name + ' County', fee: county.fee, note: MODE_NOTE[county.mode] };
+    },
+
+    deliveryFee() { return this.deliveryInfo().fee; },
+
+    orderTotal() { return this.cartSubtotal() + this.deliveryFee(); },
+
+    renderDeliveryPicker() {
+        const isBomet = this.delivery.county === 'Bomet';
+        return `
+            <div class="form-group" style="margin-bottom:12px;">
+                <label style="font-size:0.85rem;">Delivery county</label>
+                <select onchange="app.setDeliveryCounty(this.value)">
+                    ${COUNTIES.map(c => `<option value="${c.name}" ${c.name === this.delivery.county ? 'selected' : ''}>${c.name}${c.fee === 0 ? ' \u2014 free in town' : ' \u2014 KSh ' + c.fee.toLocaleString()}</option>`).join('')}
+                </select>
+            </div>
+            ${isBomet ? `
+            <div class="form-group" style="margin-bottom:12px;">
+                <label style="font-size:0.85rem;">Which part of Bomet?</label>
+                <select onchange="app.setDeliveryArea(this.value)">
+                    ${BOMET_AREAS.map(a => `<option value="${a.name}" ${a.name === this.delivery.area ? 'selected' : ''}>${a.name}${a.fee === 0 ? ' \u2014 FREE' : ' \u2014 KSh ' + a.fee.toLocaleString()}</option>`).join('')}
+                </select>
+            </div>` : ''}
+        `;
+    },
+
+    renderTotals(subtotal) {
+        const d = this.deliveryInfo();
+        const total = subtotal + d.fee;
+        return `
+            <div class="summary-row"><span>Subtotal</span><span>KSh ${subtotal.toLocaleString()}</span></div>
+            <div class="summary-row"><span>Delivery to ${d.label}</span><span>${d.fee === 0 ? 'FREE' : 'KSh ' + d.fee.toLocaleString()}</span></div>
+            <p style="font-size:0.8rem; color:var(--text-muted); margin:6px 0 12px;">${d.note} Delivery days: Tuesday &amp; Thursday.</p>
+            <div class="summary-row" style="font-weight:700; font-size:1.1rem; border-top:1px solid var(--border); padding-top:12px;">
+                <span>Total to pay</span><span>KSh ${total.toLocaleString()}</span>
+            </div>
+        `;
+    },
+
+    setDeliveryCounty(name) {
+        this.delivery.county = name;
+        if (name !== 'Bomet') this.delivery.area = 'Bomet Town (CBD)';
+        this.saveDelivery();
+        this.refreshTotals();
+        if (this.currentView === 'cart' || this.currentView === 'checkout') this.navigate(this.currentView, null, false);
+    },
+
+    setDeliveryArea(name) {
+        this.delivery.area = name;
+        this.saveDelivery();
+        this.refreshTotals();
+    },
+
+    saveDelivery() {
+        try { localStorage.setItem('prusDelivery', JSON.stringify(this.delivery)); } catch(e) {}
+    },
+
+    loadDelivery() {
+        try {
+            const raw = localStorage.getItem('prusDelivery');
+            if (raw) {
+                const d = JSON.parse(raw);
+                if (d && d.county) this.delivery = { county: getCounty(d.county).name, area: getBometArea(d.area).name };
+            }
+        } catch(e) {}
+    },
+
+    refreshTotals() {
+        const subtotal = this.cartSubtotal();
+        ['cartTotals', 'checkoutTotals'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.innerHTML = this.renderTotals(subtotal);
+        });
+    },
+
+    renderCart() {
+        if (this.cart.length === 0) {
+            return `
+                <section class="section" style="text-align:center; padding:80px 24px;">
+                    <div class="empty-cart">
+                        <i class="fas fa-shopping-bag" style="font-size:4rem; color:var(--border); margin-bottom:20px;"></i>
+                        <h2>Your bag is empty</h2>
+                        <p style="color:var(--text-muted); margin:12px 0 24px;">Looks like you haven't added anything yet. Let's fix that!</p>
+                        <button class="btn btn-primary" onclick="app.navigate('shop')">
+                            <i class="fas fa-shopping-bag"></i> Start Shopping
+                        </button>
+                    </div>
+                </section>
+            `;
+        }
+
+        const subtotal = this.cartSubtotal();
+
+        return `
+            <section class="section" style="max-width:1000px; margin:0 auto;">
+                <h2 style="font-family:'Playfair Display', serif; margin-bottom:32px;">Shopping Bag (${this.cart.reduce((s,c)=>s+c.qty,0)} items)</h2>
+                <div class="cart-layout">
+                    <div class="cart-items">
+                        ${this.cart.map((c, i) => `
+                            <div class="cart-item">
+                                <img src="${c.image}" alt="${c.name}">
+                                <div class="cart-item-info">
+                                    <h4>${c.name}</h4>
+                                    ${c.color ? `<p style="font-size:0.85rem; color:var(--text-muted);">Color: ${c.color}</p>` : ''}
+                                    ${c.size ? `<p style="font-size:0.85rem; color:var(--text-muted);">Size: ${c.size}</p>` : ''}
+                                    <div class="cart-item-qty">
+                                        <button onclick="app.updateCartQty(${i}, -1)">−</button>
+                                        <span>${c.qty}</span>
+                                        <button onclick="app.updateCartQty(${i}, 1)">+</button>
+                                    </div>
+                                </div>
+                                <div class="cart-item-price">
+                                    <span>KSh ${(c.price * c.qty).toLocaleString()}</span>
+                                    <button onclick="app.removeFromCart(${i})" style="color:var(--text-muted); font-size:0.85rem; margin-top:8px;">
+                                        <i class="fas fa-trash"></i> Remove
+                                    </button>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <div class="cart-summary">
+                        <h3>Order Summary</h3>
+                        ${this.renderDeliveryPicker()}
+                        <div id="cartTotals">${this.renderTotals(subtotal)}</div>
+                        <button class="btn btn-primary" style="width:100%; margin-top:16px;" onclick="app.navigate('checkout')">
+                            Proceed to Checkout
+                        </button>
+                        <button class="btn btn-outline" style="width:100%; margin-top:8px;" onclick="app.navigate('shop')">
+                            Continue Shopping
+                        </button>
+                    </div>
+                </div>
+            </section>
+        `;
+    },
+
+    // --- Checkout ---
+    renderCheckout() {
+        if (this.cart.length === 0) return this.renderCart();
+        const subtotal = this.cartSubtotal();
+        const u = this.currentUser();
+
+        return `
+            <section class="section" style="max-width:900px; margin:0 auto;">
+                <h2 style="font-family:'Playfair Display', serif; margin-bottom:32px;">Checkout</h2>
+                <div class="checkout-layout">
+                    <div>
+                        <div class="checkout-section">
+                            <h3><i class="fas fa-truck"></i> Delivery Details</h3>
+                            <div class="form-group">
+                                <label>Full Name</label>
+                                <input type="text" id="coName" value="${u ? this.esc(u.name) : ''}" placeholder="Enter your full name">
+                            </div>
+                            <div class="form-group">
+                                <label>Phone Number</label>
+                                <input type="tel" id="coPhone" value="${u ? this.esc(u.phone || '') : ''}" placeholder="+254 7XX XXX XXX">
+                            </div>
+                            <div class="form-group">
+                                <label>Email Address</label>
+                                <input type="email" id="coEmail" value="${u ? this.esc(u.email) : ''}" placeholder="your@email.com">
+                            </div>
+                            <div class="form-group">
+                                <label>County</label>
+                                <select id="coCounty" onchange="app.setDeliveryCounty(this.value)">
+                                    ${COUNTIES.map(c => `<option value="${c.name}" ${c.name === this.delivery.county ? 'selected' : ''}>${c.name}${c.fee === 0 ? ' \u2014 free in town' : ' \u2014 KSh ' + c.fee.toLocaleString()}</option>`).join('')}
+                                </select>
+                                <p style="font-size:0.8rem; color:var(--text-muted); margin-top:6px;">We deliver to all 47 counties. The delivery charge is added to your total automatically. Delivery days: Tuesday &amp; Thursday.</p>
+                            </div>
+                            ${this.delivery.county === 'Bomet' ? `
+                            <div class="form-group">
+                                <label>Area within Bomet</label>
+                                <select id="coArea" onchange="app.setDeliveryArea(this.value)">
+                                    ${BOMET_AREAS.map(a => `<option value="${a.name}" ${a.name === this.delivery.area ? 'selected' : ''}>${a.name}${a.fee === 0 ? ' \u2014 FREE' : ' \u2014 KSh ' + a.fee.toLocaleString()}</option>`).join('')}
+                                </select>
+                            </div>` : ''}
+                            <div class="form-group">
+                                <label>Town / Estate / Stage</label>
+                                <input type="text" id="coAddress" placeholder="e.g. Silibwet stage, next to the market">
+                            </div>
+                        </div>
+
+                        <div class="checkout-section">
+                            <h3><i class="fas fa-credit-card"></i> Payment Method</h3>
+                            <div class="payment-options">
+                                <label class="payment-option">
+                                    <input type="radio" name="payment" value="mpesa" checked>
+                                    <div>
+                                        <strong>M-Pesa</strong>
+                                        <p style="font-size:0.85rem; color:var(--text-muted); margin-top:4px;">Pay via M-Pesa mobile money. You'll receive an STK push.</p>
+                                    </div>
+                                </label>
+                                <label class="payment-option">
+                                    <input type="radio" name="payment" value="cod">
+                                    <div>
+                                        <strong>Cash on Delivery</strong>
+                                        <p style="font-size:0.85rem; color:var(--text-muted); margin-top:4px;">Pay when your order arrives. Available in Bomet area only.</p>
+                                    </div>
+                                </label>
+                                <label class="payment-option">
+                                    <input type="radio" name="payment" value="whatsapp">
+                                    <div>
+                                        <strong>Order on WhatsApp</strong>
+                                        <p style="font-size:0.85rem; color:var(--text-muted); margin-top:4px;">Complete your order via WhatsApp chat with us.</p>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="cart-summary" style="position:sticky; top:100px;">
+                            <h3>Order Summary</h3>
+                            ${this.cart.map(c => `
+                                <div class="summary-row" style="font-size:0.9rem;">
+                                    <span>${c.name} x${c.qty}</span>
+                                    <span>KSh ${(c.price * c.qty).toLocaleString()}</span>
+                                </div>
+                            `).join('')}
+                            <div id="checkoutTotals">${this.renderTotals(subtotal)}</div>
+                            <button class="btn btn-primary" style="width:100%; margin-top:16px;" onclick="app.placeOrder()">
+                                <i class="fas fa-lock"></i> Place Order
+                            </button>
+                            <p style="font-size:0.8rem; color:var(--text-muted); text-align:center; margin-top:12px;">
+                                <i class="fas fa-shield-alt"></i> Secure checkout. Your data is protected.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        `;
+    },
+
+    placeOrder() {
+        if (this.cart.length === 0) { this.showToast('Your bag is empty.'); return; }
+        const payment = document.querySelector('input[name="payment"]:checked')?.value;
+        const val = (id) => (document.getElementById(id)?.value || '').trim();
+        const name = val('coName'), phone = val('coPhone'), email = val('coEmail'), address = val('coAddress');
+
+        if (!name || !phone) { this.showToast('Please add your name and phone number so we can reach you.'); return; }
+
+        const d = this.deliveryInfo();
+        const subtotal = this.cartSubtotal();
+        const total = subtotal + d.fee;
+
+        const order = {
+            id: 'PC' + Date.now().toString().slice(-8),
+            ts: Date.now(),
+            date: new Date().toLocaleDateString('en-KE', { year: 'numeric', month: 'short', day: 'numeric' }),
+            name, phone, email, address,
+            county: this.delivery.county,
+            area: this.delivery.county === 'Bomet' ? this.delivery.area : '',
+            destination: d.label,
+            items: this.cart.map(c => ({ name: c.name, qty: c.qty, price: c.price, size: c.size, color: c.color, image: c.image })),
+            subtotal, deliveryFee: d.fee, total,
+            payment: payment || 'whatsapp',
+            status: 'Pending confirmation'
+        };
+        this.saveOrder(order);
+
+        const lines = this.cart.map(c => `\u2022 ${c.name} x${c.qty} \u2014 KSh ${(c.price * c.qty).toLocaleString()}`);
+        const msg = [
+            "Hi Pru's Closet! I'd like to place this order:",
+            '',
+            ...lines,
+            '',
+            'Subtotal: KSh ' + subtotal.toLocaleString(),
+            'Delivery to ' + d.label + ': ' + (d.fee === 0 ? 'FREE' : 'KSh ' + d.fee.toLocaleString()),
+            'TOTAL: KSh ' + total.toLocaleString(),
+            '',
+            'Name: ' + name,
+            'Phone: ' + phone,
+            (address ? 'Drop-off: ' + address : ''),
+            'Order no: ' + order.id
+        ].filter(Boolean).join('\n');
+
+        if (payment === 'whatsapp' || !payment) {
+            window.open('https://wa.me/254720664090?text=' + encodeURIComponent(msg), '_blank');
+            this.showToast('Order ' + order.id + ' saved \u2014 finish up on WhatsApp!');
+        } else {
+            this.showToast('Order ' + order.id + ' placed! Total KSh ' + total.toLocaleString() + '. We\u2019ll confirm on WhatsApp. \uD83C\uDF89');
+        }
+        this.cart = [];
+        this.saveCart();
+        this.updateCartCount();
+        setTimeout(() => this.navigate('account'), 1500);
+    },
+
+    // --- Orders ---
+    loadOrders() {
+        try {
+            const raw = localStorage.getItem('prusOrders');
+            if (raw) return JSON.parse(raw);
+        } catch(e) {}
+        return [];
+    },
+
+    saveOrder(order) {
+        const u = this.currentUser();
+        order.user = u ? u.email : '';
+        const all = this.loadOrders();
+        all.unshift(order);
+        try { localStorage.setItem('prusOrders', JSON.stringify(all)); } catch(e) {}
+        if (cloud.enabled) cloud.put('orders', order.id, order).catch(() => {});
+    },
+
+    myOrders() {
+        const u = this.currentUser();
+        const all = this.loadOrders();
+        if (!u) return all.filter(o => !o.user);
+        return all.filter(o => o.user === u.email || !o.user);
+    },
+
+    // --- New Arrivals ---
+    renderNewArrivals() {
+        const items = productData.filter(p => p.isNew);
+        return `
+            <section class="section">
+                <div class="shop-header">
+                    <div><h2>✦ New Arrivals</h2><span>${items.length} fresh drops</span></div>
+                </div>
+                <div class="product-grid">
+                    ${items.map(p => this.renderProductCard(p)).join('')}
+                </div>
+                ${items.length === 0 ? '<div style="text-align:center;padding:60px;"><h3>No new arrivals yet</h3></div>' : ''}
+            </section>
+        `;
+    },
+
+    // --- Sale ---
+    renderSale() {
+        const items = productData.filter(p => p.isSale || p.oldPrice);
+        return `
+            <section class="section">
+                <div class="shop-header">
+                    <div><h2>🎉 Sale</h2><span>${items.length} items on sale</span></div>
+                </div>
+                <div class="product-grid">
+                    ${items.map(p => this.renderProductCard(p)).join('')}
+                </div>
+                ${items.length === 0 ? '<div style="text-align:center;padding:60px;"><h3>No sale items right now</h3></div>' : ''}
+            </section>
+        `;
+    },
+
+    // --- About ---
+    renderAbout() {
+        return `
+            <section class="section" style="max-width:900px; margin:0 auto;">
+                <div class="section-header">
+                    <h2>About Pru's Closet</h2>
+                    <p>Fashion that finds you — curated with love in Bomet</p>
+                </div>
+                <div class="about-content">
+                    <p style="font-size:1.1rem; line-height:1.8; color:var(--text-light); margin-bottom:24px;">
+                        Pru's Closet is a fashion boutique born from a love of style, sustainability, and the vibrant energy of Kenyan women. We believe every woman deserves to feel confident, beautiful, and unapologetically herself.
+                    </p>
+                    <p style="font-size:1.1rem; line-height:1.8; color:var(--text-light); margin-bottom:24px;">
+                        From thrifted vintage gems to brand-new statement pieces, we curate collections that blend affordability with quality. Every piece is hand-selected by Prudence Kewel, the owner of Pru's Closet — if it's in the closet, Pru would wear it herself.
+                    </p>
+                    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:24px; margin:40px 0;">
+                        <div style="text-align:center; padding:24px; background:var(--bg-warm); border-radius:var(--radius);">
+                            <div style="font-size:2.5rem; margin-bottom:12px;">🌍</div>
+                            <h4>Local & Sustainable</h4>
+                            <p style="font-size:0.9rem; color:var(--text-muted); margin-top:8px;">We source locally and promote thrifted fashion to reduce waste.</p>
+                        </div>
+                        <div style="text-align:center; padding:24px; background:var(--bg-warm); border-radius:var(--radius);">
+                            <div style="font-size:2.5rem; margin-bottom:12px;">💎</div>
+                            <h4>Quality Curated</h4>
+                            <p style="font-size:0.9rem; color:var(--text-muted); margin-top:8px;">Every item is inspected and approved before it hits the closet.</p>
+                        </div>
+                        <div style="text-align:center; padding:24px; background:var(--bg-warm); border-radius:var(--radius);">
+                            <div style="font-size:2.5rem; margin-bottom:12px;">🚚</div>
+                            <h4>Tuesday &amp; Thursday Delivery</h4>
+                            <p style="font-size:0.9rem; color:var(--text-muted); margin-top:8px;">Deliveries go out twice a week — free within Bomet town.</p>
+                        </div>
+                    </div>
+                    <h3 style="font-family:'Playfair Display', serif; margin-top:48px;">Customer Reviews</h3>
+                    ${reviews.length ? `
+                    <div class="reviews-grid" style="margin-top:24px;">
+                        ${reviews.map(r => this.renderReviewCard(r)).join('')}
+                    </div>` : `
+                    <p style="color:var(--text-muted); margin-top:12px;">No reviews yet — your review could be the first one here.</p>`}
+                    ${this.renderReviewForm()}
+                </div>
+            </section>
+        `;
+    },
+
+    // --- Contact ---
+    renderContact() {
+        return `
+            <section class="section" style="max-width:900px; margin:0 auto;">
+                <div class="section-header">
+                    <h2>Get in Touch</h2>
+                    <p>We'd love to hear from you</p>
+                </div>
+                <div class="contact-layout">
+                    <div class="contact-info">
+                        <div class="contact-info-card">
+                            <i class="fab fa-whatsapp"></i>
+                            <div>
+                                <h4>WhatsApp</h4>
+                                <a href="https://wa.me/254720664090" target="_blank">0720 664 090</a>
+                                <p style="font-size:0.85rem; margin-top:4px;">Fastest way to reach us &mdash; orders &amp; delivery quotes</p>
+                            </div>
+                        </div>
+                        <div class="contact-info-card">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4>Email</h4>
+                <a href="mailto:Prudencekapkwang@gmail.com">Prudencekapkwang@gmail.com</a>
+                                <p style="font-size:0.85rem; margin-top:4px;">We reply within 24 hours</p>
+                            </div>
+                        </div>
+                        <div class="contact-info-card">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h4>Location & Pickup</h4>
+                                <p>Bomet, Kenya</p>
+                                <p style="font-size:0.85rem; margin-top:4px;">Pickup available by appointment</p>
+                            </div>
+                        </div>
+                        <div class="contact-info-card">
+                            <i class="fas fa-heart"></i>
+                            <div>
+                                <h4>Follow Pru's Closet</h4>
+                                <a href="https://www.instagram.com/pru.s_closet?igsh=MWN2cmQ0YjFmaHRxNw%3D%3D" target="_blank" rel="noopener">Instagram &mdash; @pru.s_closet</a>
+                                <br>
+                                <a href="https://www.tiktok.com/@prus.closet?_r=1&amp;_t=ZS-98vwyARG04W" target="_blank" rel="noopener">TikTok &mdash; @prus.closet</a>
+                                <p style="font-size:0.85rem; margin-top:4px;">New pieces are posted here first</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-form">
+                        <h3 style="font-size:1.2rem; margin-bottom:20px; color:var(--primary); font-family:'Playfair Display', serif;">Send a Message</h3>
+                        <div class="form-group">
+                            <label>Your Name</label>
+                            <input type="text" placeholder="Full name">
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" placeholder="your@email.com">
+                        </div>
+                        <div class="form-group">
+                            <label>Subject</label>
+                            <select>
+                                <option>General Inquiry</option>
+                                <option>Order Question</option>
+                                <option>Product Request</option>
+                                <option>Collaboration</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Message</label>
+                            <textarea placeholder="How can we help you?"></textarea>
+                        </div>
+                        <button class="btn btn-primary" style="width:100%; justify-content:center;" onclick="app.showToast('Message sent! We\'ll be in touch soon.')">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                    </div>
+                </div>
+            </section>
+        `;
+    },
+
+    // --- Delivery ---
+    renderDelivery() {
+        return `
+            <section class="section" style="max-width:900px; margin:0 auto;">
+                <div class="section-header">
+                    <h2>Delivery Information</h2>
+                    <p>Deliveries go out every Tuesday and Thursday</p>
+                </div>
+
+                <div class="delivery-card">
+                    <h3><i class="fas fa-calendar-check"></i> Delivery Days</h3>
+                    <p>We deliver <strong>twice a week — every Tuesday and Thursday</strong>. Orders confirmed before a delivery day go out on that day; anything after goes on the next delivery day.</p>
+                    <ul>
+                        <li><strong>Tuesday</strong> — orders confirmed by Monday evening</li>
+                        <li><strong>Thursday</strong> — orders confirmed by Wednesday evening</li>
+                    </ul>
+                </div>
+
+                <div class="delivery-card">
+                    <h3><i class="fas fa-money-bill-wave"></i> Delivery Charges \u2014 Bomet County</h3>
+                    <p>Bomet is home, so we hand deliver here ourselves every Tuesday and Thursday.</p>
+                    <table class="delivery-table">
+                        <tr><th>Area</th><th>Cost</th><th>When</th></tr>
+                        ${BOMET_AREAS.map(a => `<tr><td>${a.name}</td><td>${a.fee === 0 ? '<strong>FREE</strong>' : 'KSh ' + a.fee.toLocaleString()}</td><td>Tuesday &amp; Thursday</td></tr>`).join('')}
+                    </table>
+                    <p style="margin-top:16px; color:var(--accent); font-weight:600;">\u2728 Delivery is completely free anywhere within Bomet town.</p>
+                </div>
+
+                <div class="delivery-card">
+                    <h3><i class="fas fa-map-marked-alt"></i> We Deliver To All 47 Counties</h3>
+                    <p>Wherever you are in Kenya, we can get your order to you. Pick your county at checkout and the delivery charge is added to your total automatically \u2014 no guessing.</p>
+                    <div class="form-group" style="max-width:420px; margin:16px 0;">
+                        <label>Check your county</label>
+                        <select onchange="app.showCountyQuote(this.value)">
+                            <option value="">Select your county\u2026</option>
+                            ${COUNTIES.map(c => `<option value="${c.name}">${c.name}</option>`).join('')}
+                        </select>
+                    </div>
+                    <div id="countyQuote" style="margin-bottom:16px;"></div>
+                    <table class="delivery-table">
+                        <tr><th>County</th><th>Delivery cost</th><th>How it travels</th></tr>
+                        ${COUNTIES.slice().sort((a,b) => a.name.localeCompare(b.name)).map(c => `<tr><td>${c.name}</td><td>${c.fee === 0 ? '<strong>FREE in town</strong>' : 'KSh ' + c.fee.toLocaleString()}</td><td>${c.mode === 'local' ? 'Hand delivered by us' : (c.mode === 'courier' ? 'Matatu parcel service' : 'Easy Coach / Ena Coach')}</td></tr>`).join('')}
+                    </table>
+                    <p style="margin-top:12px; color:var(--text-light);">These are our standard rates per order. Bulky orders or very remote drop-off points may cost a little more \u2014 we will always confirm on WhatsApp before dispatch. Long-distance parcels travel by <strong>Easy Coach</strong> or <strong>Ena Coach</strong>, which cost noticeably more than nearby routes.</p>
+                </div>
+
+                <div class="delivery-card">
+                    <h3><i class="fas fa-hand-holding-heart"></i> Pickup</h3>
+                    <p>Prefer to collect your order yourself? Pickup in Bomet town is available by appointment — just message us on WhatsApp and we'll agree on a time.</p>
+                </div>
+
+                <div class="delivery-card">
+                    <h3><i class="fas fa-undo"></i> Returns &amp; Exchanges</h3>
+                    <p>Not quite right? Talk to us within 7 days of delivery. Items must be unworn and in their original condition. Exchanges depend on what is still in stock.</p>
+                </div>
+
+                <div class="delivery-card">
+                    <h3><i class="fab fa-whatsapp"></i> Questions About Your Route?</h3>
+                    <p>Send us your location on WhatsApp and we'll quote your delivery cost right away.</p>
+                    <a class="btn btn-whatsapp" style="width:fit-content; margin-top:12px;" target="_blank" rel="noopener"
+                       href="https://wa.me/254720664090?text=Hi%20Pru's%20Closet!%20How%20much%20is%20delivery%20to%20my%20area?">
+                        <i class="fab fa-whatsapp"></i> Ask on WhatsApp
+                    </a>
+                </div>
+            </section>
+        `;
+    },
+
+    showCountyQuote(name) {
+        const box = document.getElementById('countyQuote');
+        if (!box) return;
+        if (!name) { box.innerHTML = ''; return; }
+        const c = getCounty(name);
+        box.innerHTML = `<div style="background:var(--bg-alt,#faf7f5); border:1px solid var(--border); border-radius:12px; padding:14px;">
+            <strong>${c.name} County:</strong> ${c.fee === 0 ? 'FREE inside Bomet town (KSh 100\u2013250 for the outer areas)' : 'KSh ' + c.fee.toLocaleString() + ' per order'}<br>
+            <span style="color:var(--text-muted); font-size:0.9rem;">${MODE_NOTE[c.mode]}</span>
+        </div>`;
+    },
+
+    // --- Account ---
+    renderAccount() {
+        const u = this.currentUser();
+        if (!u) return this.renderAuth();
+        const orders = this.myOrders();
+        const initials = u.name.split(/\s+/).map(w => w[0]).join('').slice(0, 2).toUpperCase();
+
+        const tabs = {
+            orders: `
+                <h2>My Orders</h2>
+                <p style="color:var(--text-muted); margin-bottom:24px;">Every order you have placed with us</p>
+                ${orders.length === 0 ? `
+                    <div class="empty-cart" style="padding:40px;">
+                        <i class="fas fa-box-open" style="font-size:3rem; color:var(--border);"></i>
+                        <h3>No orders yet</h3>
+                        <p>Your orders will show up here once you place one.</p>
+                        <button class="btn btn-primary" style="margin-top:16px;" onclick="app.navigate('shop')">Start Shopping</button>
+                    </div>` : ''}
+                ${orders.map(o => `
+                    <div class="order-card">
+                        <div class="order-header">
+                            <h4>Order ${o.id}</h4>
+                            <span class="order-status">${this.esc(o.status || 'Pending confirmation')}</span>
+                        </div>
+                        <p style="font-size:0.9rem; color:var(--text-light); margin-bottom:8px;">${(o.items || []).map(i => this.esc(i.name) + ' x' + i.qty).join(', ')}</p>
+                        <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:8px;">Delivery to ${this.esc(o.destination || o.county || '')} \u2014 ${o.deliveryFee === 0 ? 'FREE' : 'KSh ' + (o.deliveryFee || 0).toLocaleString()}</p>
+                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                            <span style="font-size:0.85rem; color:var(--text-muted);">${this.esc(o.date || '')}</span>
+                            <span style="font-weight:700; color:var(--primary);">KSh ${(o.total || 0).toLocaleString()}</span>
+                        </div>
+                    </div>
+                `).join('')}
+            `,
+            favorites: `
+                <h2>My Favourites</h2>
+                <p style="color:var(--text-muted); margin-bottom:24px;">Products you've saved for later</p>
+                <div class="empty-cart" style="padding:40px;">
+                    <i class="fas fa-heart" style="font-size:3rem; color:var(--border);"></i>
+                    <h3>No favourites yet</h3>
+                    <p>Heart items you love while browsing to save them here.</p>
+                </div>
+            `,
+            details: `
+                <h2>Account Details</h2>
+                <p style="color:var(--text-muted); margin-bottom:24px;">Manage your personal information</p>
+                <div class="checkout-section" style="margin-bottom:16px;">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" id="acName" value="${this.esc(u.name)}">
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" value="${this.esc(u.email)}" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <input type="tel" id="acPhone" value="${this.esc(u.phone || '')}" placeholder="07XX XXX XXX">
+                    </div>
+                    <div class="form-group">
+                        <label>County</label>
+                        <select id="acCounty">
+                            ${COUNTIES.map(c => `<option ${c.name === (u.county || 'Bomet') ? 'selected' : ''}>${c.name}</option>`).join('')}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Town / Estate</label>
+                        <input type="text" id="acTown" value="${this.esc(u.town || '')}" placeholder="e.g. Silibwet">
+                    </div>
+                    <button class="btn btn-primary" onclick="app.saveAccountDetails()" style="margin-top:8px;">Save Changes</button>
+                </div>
+                <div class="checkout-section">
+                    <h3><i class="fas fa-key"></i> Change Password</h3>
+                    <div class="form-group">
+                        <label>Current password</label>
+                        <input type="password" id="acOldPass">
+                    </div>
+                    <div class="form-group">
+                        <label>New password</label>
+                        <input type="password" id="acNewPass">
+                    </div>
+                    <button class="btn btn-outline" onclick="app.changePassword()">Update Password</button>
+                </div>
+            `
+        };
+
+        return `
+            <section class="account-layout">
+                <aside class="account-sidebar">
+                    <div class="account-avatar">${this.esc(initials || 'PC')}</div>
+                    <h3>${this.esc(u.name)}</h3>
+                    <p>${this.esc(u.email)}</p>
+                    <div class="account-menu">
+                        <div class="account-menu-item ${this.accountTab === 'orders' ? 'active' : ''}" onclick="app.setAccountTab('orders')">
+                            <i class="fas fa-shopping-bag"></i> Orders
+                        </div>
+                        <div class="account-menu-item ${this.accountTab === 'favorites' ? 'active' : ''}" onclick="app.setAccountTab('favorites')">
+                            <i class="fas fa-heart"></i> Favourites
+                        </div>
+                        <div class="account-menu-item ${this.accountTab === 'details' ? 'active' : ''}" onclick="app.setAccountTab('details')">
+                            <i class="fas fa-user"></i> Account Details
+                        </div>
+                        <div class="account-menu-item" onclick="app.logoutUser()">
+                            <i class="fas fa-sign-out-alt"></i> Sign Out
+                        </div>
+                    </div>
+                </aside>
+                <div class="account-content">
+                    ${tabs[this.accountTab] || tabs.orders}
+                </div>
+            </section>
+        `;
+    },
+
+    // --- Customer sign in / sign up ---
+    renderAuth() {
+        const signup = this.authMode === 'signup';
+        return `
+            <section class="section" style="max-width:460px; margin:0 auto;">
+                <div class="section-header">
+                    <h2>${signup ? 'Create Your Account' : 'Welcome Back'}</h2>
+                    <p>${signup ? 'Save your details and keep track of every order' : 'Sign in to see your orders and saved details'}</p>
+                </div>
+                <div class="checkout-section">
+                    ${signup ? `
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" id="authName" placeholder="e.g. Mary Chepkoech">
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="tel" id="authPhone" placeholder="07XX XXX XXX">
+                    </div>
+                    <div class="form-group">
+                        <label>County</label>
+                        <select id="authCounty">
+                            ${COUNTIES.map(c => `<option ${c.name === 'Bomet' ? 'selected' : ''}>${c.name}</option>`).join('')}
+                        </select>
+                    </div>` : ''}
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" id="authEmail" placeholder="your@email.com" onkeydown="if(event.key==='Enter')app.submitAuth()">
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" id="authPass" placeholder="${signup ? 'At least 6 characters' : 'Your password'}" onkeydown="if(event.key==='Enter')app.submitAuth()">
+                    </div>
+                    <button class="btn btn-primary" style="width:100%; justify-content:center; margin-top:8px;" onclick="app.submitAuth()">
+                        <i class="fas fa-${signup ? 'user-plus' : 'sign-in-alt'}"></i> ${signup ? 'Create Account' : 'Sign In'}
+                    </button>
+                    <p style="text-align:center; margin-top:16px; font-size:0.9rem; color:var(--text-muted);">
+                        ${signup ? 'Already have an account?' : "Don't have an account yet?"}
+                        <a href="#" onclick="event.preventDefault();app.setAuthMode('${signup ? 'login' : 'signup'}')" style="color:var(--primary); font-weight:600;">${signup ? 'Sign in' : 'Create one'}</a>
+                    </p>
+                    <p style="text-align:center; margin-top:10px; font-size:0.8rem; color:var(--text-muted);">Your details stay private and are only used for your deliveries.</p>
+                </div>
+            </section>
+        `;
+    },
+
+    setAuthMode(mode) {
+        this.authMode = mode;
+        this.render('account', null, false);
+    },
+
+    loadUsers() {
+        try {
+            const raw = localStorage.getItem('prusUsers');
+            if (raw) return JSON.parse(raw);
+        } catch(e) {}
+        return [];
+    },
+
+    saveUsers(list) {
+        try { localStorage.setItem('prusUsers', JSON.stringify(list)); } catch(e) {}
+    },
+
+    hashPass(pw) {
+        let h = 5381;
+        for (let i = 0; i < pw.length; i++) h = ((h * 33) ^ pw.charCodeAt(i)) >>> 0;
+        return 'h' + h.toString(36) + '_' + pw.length;
+    },
+
+    currentUser() {
+        try {
+            const email = localStorage.getItem('prusSession');
+            if (!email) return null;
+            return this.loadUsers().find(u => u.email === email) || null;
+        } catch(e) { return null; }
+    },
+
+    submitAuth() {
+        const v = (id) => (document.getElementById(id)?.value || '').trim();
+        const email = v('authEmail').toLowerCase();
+        const pass = document.getElementById('authPass')?.value || '';
+        if (!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { this.showToast('Please enter a valid email address.'); return; }
+        const users = this.loadUsers();
+
+        if (this.authMode === 'signup') {
+            const name = v('authName');
+            if (!name) { this.showToast('Please enter your name.'); return; }
+            if (pass.length < 6) { this.showToast('Your password needs at least 6 characters.'); return; }
+            if (users.some(u => u.email === email)) { this.showToast('That email already has an account \u2014 please sign in.'); this.authMode = 'login'; this.render('account', null, false); return; }
+            const user = {
+                email, name,
+                phone: v('authPhone'),
+                county: v('authCounty') || 'Bomet',
+                town: '',
+                pass: this.hashPass(pass),
+                joined: new Date().toISOString()
+            };
+            users.push(user);
+            this.saveUsers(users);
+            localStorage.setItem('prusSession', email);
+            if (user.county) { this.delivery.county = getCounty(user.county).name; this.saveDelivery(); }
+            if (cloud.enabled) cloud.put('customers', email, { email, name: user.name, phone: user.phone, county: user.county, joined: user.joined }).catch(() => {});
+            this.showToast('Welcome to Pru\u2019s Closet, ' + name.split(' ')[0] + '! \uD83D\uDC96');
+        } else {
+            const user = users.find(u => u.email === email);
+            if (!user || user.pass !== this.hashPass(pass)) { this.showToast('Those details don\u2019t match an account. Please try again.'); return; }
+            localStorage.setItem('prusSession', email);
+            if (user.county) { this.delivery.county = getCounty(user.county).name; this.saveDelivery(); }
+            this.showToast('Welcome back, ' + user.name.split(' ')[0] + '!');
+        }
+        this.accountTab = 'orders';
+        this.updateAccountLink();
+        this.render('account', null, false);
+    },
+
+    logoutUser() {
+        localStorage.removeItem('prusSession');
+        this.authMode = 'login';
+        this.updateAccountLink();
+        this.showToast('You have been signed out.');
+        this.navigate('home');
+    },
+
+    saveAccountDetails() {
+        const u = this.currentUser();
+        if (!u) return;
+        const v = (id) => (document.getElementById(id)?.value || '').trim();
+        const name = v('acName');
+        if (!name) { this.showToast('Please keep a name on your account.'); return; }
+        const users = this.loadUsers();
+        const me = users.find(x => x.email === u.email);
+        me.name = name;
+        me.phone = v('acPhone');
+        me.county = v('acCounty') || 'Bomet';
+        me.town = v('acTown');
+        this.saveUsers(users);
+        this.delivery.county = getCounty(me.county).name;
+        this.saveDelivery();
+        if (cloud.enabled) cloud.put('customers', me.email, { email: me.email, name: me.name, phone: me.phone, county: me.county, joined: me.joined }).catch(() => {});
+        this.showToast('Your details are saved.');
+        this.render('account', null, false);
+    },
+
+    changePassword() {
+        const u = this.currentUser();
+        if (!u) return;
+        const oldPass = document.getElementById('acOldPass')?.value || '';
+        const newPass = document.getElementById('acNewPass')?.value || '';
+        if (u.pass !== this.hashPass(oldPass)) { this.showToast('Your current password is not correct.'); return; }
+        if (newPass.length < 6) { this.showToast('The new password needs at least 6 characters.'); return; }
+        const users = this.loadUsers();
+        users.find(x => x.email === u.email).pass = this.hashPass(newPass);
+        this.saveUsers(users);
+        this.showToast('Password updated.');
+        this.render('account', null, false);
+    },
+
+    updateAccountLink() {
+        const u = this.currentUser();
+        document.querySelectorAll('[data-account-label]').forEach(el => {
+            el.textContent = u ? u.name.split(' ')[0] : 'Sign In';
+        });
+    },
+
+    setAccountTab(tab) {
+        this.accountTab = tab;
+        this.render('account', null, false);
+    },
+
+    // --- Search ---
+    renderSearch(query) {
+        const q = query.toLowerCase();
+        const results = productData.filter(p =>
+            p.name.toLowerCase().includes(q) ||
+            p.category.toLowerCase().includes(q) ||
+            p.description.toLowerCase().includes(q)
+        );
+
+        return `
+            <section class="section">
+                <div class="shop-header">
+                    <div>
+                        <h2>Search Results</h2>
+                        <span>${results.length} result${results.length !== 1 ? 's' : ''} for "${query}"</span>
+                    </div>
+                </div>
+                <div class="product-grid">
+                    ${results.map(p => this.renderProductCard(p)).join('')}
+                </div>
+                ${results.length === 0 ? `
+                    <div style="text-align:center; padding:80px 24px;">
+                        <i class="fas fa-search" style="font-size:3rem; color:var(--border); margin-bottom:16px;"></i>
+                        <h3>No results found</h3>
+                        <p style="color:var(--text-muted);">Try searching for "dress" or "bag"</p>
+                    </div>
+                ` : ''}
+            </section>
+        `;
+    },
+
+    // ==========================================
+    // ADMIN PANEL
+    // ==========================================
+
+    renderAdmin() {
+        if (!this.isAdmin) return this.renderAdminLogin();
+
+        switch(this.adminTab) {
+            case 'products': return this.renderAdminProducts();
+            case 'add': return this.renderAdminProductForm();
+            case 'edit': return this.renderAdminProductForm(this.editingProduct);
+            case 'settings': return this.renderAdminSettings();
+            default: return this.renderAdminProducts();
+        }
+    },
+
+    renderAdminLogin() {
+        return `
+            <section class="section" style="max-width:500px; margin:60px auto;">
+                <div style="background:var(--card-bg); padding:40px; border-radius:var(--radius); border:1px solid var(--border);">
+                    <div style="text-align:center; margin-bottom:32px;">
+                        <div style="font-size:3rem; margin-bottom:12px;">🔐</div>
+                        <h2 style="font-family:'Playfair Display', serif;">Owner Portal</h2>
+                        <p style="color:var(--text-muted); margin-top:8px;">Sign in to manage your store</p>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" id="adminPassword" placeholder="Enter admin password" onkeydown="if(event.key==='Enter')app.loginAdmin()">
+                    </div>
+                    <button class="btn btn-primary" style="width:100%; margin-top:8px;" onclick="app.loginAdmin()">
+                        <i class="fas fa-sign-in-alt"></i> Sign In
+                    </button>
+                    <p style="text-align:center; margin-top:16px; font-size:0.85rem; color:var(--text-muted);">
+                        Default password: <code style="background:var(--bg-warm); padding:2px 6px; border-radius:4px;">pru2026</code>
+                    </p>
+                    <p style="text-align:center; margin-top:8px; font-size:0.8rem; color:var(--text-muted);">
+                        <a href="#" onclick="app.navigate('home')" style="color:var(--accent);">← Back to Store</a>
+                    </p>
+                </div>
+            </section>
+        `;
+    },
+
+    loginAdmin() {
+        const pw = document.getElementById('adminPassword').value;
+        const savedPw = localStorage.getItem('prusAdminPassword') || 'pru2026';
+        if (pw === savedPw) {
+            this.isAdmin = true;
+            const session = { expires: Date.now() + 7 * 24 * 60 * 60 * 1000 };
+            localStorage.setItem('prusAdminSession', JSON.stringify(session));
+            this.showToast('Welcome back, Pru! 👋');
+            this.adminTab = 'products';
+            this.render('admin', null, false);
+        } else {
+            this.showToast('Incorrect password. Try again.');
+        }
+    },
+
+    logoutAdmin() {
+        this.isAdmin = false;
+        localStorage.removeItem('prusAdminSession');
+        this.showToast('Logged out successfully.');
+        this.navigate('home');
+    },
+
+    renderAdminProducts() {
+        return `
+            <section class="section">
+                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; margin-bottom:32px;">
+                    <div>
+                        <h2 style="font-family:'Playfair Display', serif;">📦 Manage Products</h2>
+                        <p style="color:var(--text-muted);">${productData.length} products in your closet</p>
+                    </div>
+                    <div style="display:flex; gap:12px;">
+                        <button class="btn btn-primary" onclick="app.setAdminTab('add')">
+                            <i class="fas fa-plus"></i> Add Product
+                        </button>
+                        <button class="btn btn-outline" onclick="app.logoutAdmin()">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </button>
+                    </div>
+                </div>
+
+                <div style="overflow-x:auto;">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>Name</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Old Price</th>
+                                <th>Stock</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${productData.map(p => `
+                                <tr>
+                                    <td><img src="${p.image}" alt="${p.name}" style="width:50px; height:50px; object-fit:cover; border-radius:8px;"></td>
+                                    <td><strong>${p.name}</strong></td>
+                                    <td>${categoryInfo[p.category]?.emoji || ''} ${categoryInfo[p.category]?.title || p.category}</td>
+                                    <td style="font-weight:700; color:var(--accent);">KSh ${p.price.toLocaleString()}</td>
+                                    <td>${p.oldPrice ? 'KSh ' + p.oldPrice.toLocaleString() : '—'}</td>
+                                    <td>${p.stock}</td>
+                                    <td>
+                                        ${p.isNew ? '<span class="admin-badge new">NEW</span>' : ''}
+                                        ${p.isSale ? '<span class="admin-badge sale">SALE</span>' : ''}
+                                        ${p.stock < 5 ? '<span class="admin-badge low">LOW</span>' : ''}
+                                    </td>
+                                    <td>
+                                        <button class="admin-btn edit" onclick="app.editProduct('${p.id}')" title="Edit">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="admin-btn delete" onclick="app.deleteProduct('${p.id}')" title="Delete">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                </div>
+
+                <div style="margin-top:40px; padding:24px; background:var(--bg-warm); border-radius:var(--radius);">
+                    <h4 style="margin-bottom:12px;">⚡ Quick Actions</h4>
+                    <div style="display:flex; gap:12px; flex-wrap:wrap;">
+                        <button class="btn btn-outline" onclick="if(confirm('Reset all products to default? This will erase any custom changes.')) resetProducts()">
+                            <i class="fas fa-undo"></i> Reset to Default
+                        </button>
+                        <button class="btn btn-outline" onclick="app.setAdminTab('settings')">
+                            <i class="fas fa-cog"></i> Settings
+                        </button>
+                    </div>
+                </div>
+            </section>
+        `;
+    },
+
+    setAdminTab(tab) {
+        _pendingImages.main = null;
+        _pendingImages.extra = [];
+        this._editProductImages = null;
+        this.adminTab = tab;
+        this.render('admin', null, false);
+    },
+
+    editProduct(id) {
+        this.editingProduct = id;
+        const p = productData.find(x => x.id === id);
+        this._editProductImages = p ? { main: p.image, extra: p.images ? p.images.slice(1) : [] } : null;
+        this.adminTab = 'edit';
+        this.render('admin', null, false);
+    },
+
+    deleteProduct(id) {
+        if (!confirm('Are you sure you want to delete this product? This cannot be undone.')) return;
+        productData = productData.filter(p => p.id !== id);
+        saveProducts(productData);
+        if (cloud.enabled) cloud.remove('products', id).catch(() => this.showToast('Removed here, but the shared store could not be reached. Use Publish in Settings later.'));
+        this.showToast('Product deleted.');
+        this.render('admin', null, false);
+        this.updateCartCount();
+    },
+
+    renderAdminProductForm(productId = null) {
+        const p = productId ? productData.find(x => x.id === productId) : null;
+        const isEdit = !!p;
+        const cats = Object.keys(categoryInfo);
+
+        return `
+            <section class="section" style="max-width:800px; margin:0 auto;">
+                <div style="display:flex; align-items:center; gap:12px; margin-bottom:24px;">
+                    <button class="btn btn-outline" onclick="app.setAdminTab('products')" style="width:auto; padding:8px 16px;">
+                        <i class="fas fa-arrow-left"></i> Back
+                    </button>
+                    <h2 style="font-family:'Playfair Display', serif;">${isEdit ? '✏️ Edit Product' : '➕ Add New Product'}</h2>
+                </div>
+
+                <div style="background:var(--card-bg); padding:32px; border-radius:var(--radius); border:1px solid var(--border);">
+                    <div class="admin-form">
+                        <div class="form-group">
+                            <label>Product Name *</label>
+                            <input type="text" id="pName" value="${isEdit ? p.name : ''}" placeholder="e.g. Floral Maxi Dress">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Category *</label>
+                                <select id="pCategory">
+                                    ${cats.map(c => `<option value="${c}" ${isEdit && p.category === c ? 'selected' : ''}>${categoryInfo[c].title}</option>`).join('')}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Stock Quantity *</label>
+                                <input type="number" id="pStock" value="${isEdit ? p.stock : '10'}" min="0">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Price (KSh) *</label>
+                                <input type="number" id="pPrice" value="${isEdit ? p.price : ''}" placeholder="e.g. 1850" min="0">
+                            </div>
+                            <div class="form-group">
+                                <label>Old Price (KSh) — optional</label>
+                                <input type="number" id="pOldPrice" value="${isEdit && p.oldPrice ? p.oldPrice : ''}" placeholder="For sale display" min="0">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Rating (1-5)</label>
+                                <input type="number" id="pRating" value="${isEdit ? p.rating : '4.5'}" min="1" max="5" step="0.1">
+                            </div>
+                            <div class="form-group">
+                                <label>Review Count</label>
+                                <input type="number" id="pReviews" value="${isEdit ? p.reviews : '0'}" min="0">
+                            </div>
+                        </div>
+
+                        <div class="form-group image-upload-group">
+                            <label>Main Image *</label>
+                            <div class="image-upload-area" id="mainImageArea">
+                                ${isEdit && p.image ? `
+                                    <div class="image-preview-item main-preview">
+                                        <img src="${p.image}" alt="Main image">
+                                        <button type="button" class="image-remove-btn" onclick="app.removeExistingMainImage()" title="Remove image"><i class="fas fa-times"></i></button>
+                                    </div>
+                                ` : `
+                                    <div class="image-upload-placeholder" onclick="document.getElementById('pMainImageFile').click()">
+                                        <i class="fas fa-camera"></i>
+                                        <span>Tap to select photo</span>
+                                    </div>
+                                `}
+                                <div class="image-preview-item main-preview" id="mainImagePreview" style="display:none;">
+                                    <img id="mainImagePreviewImg" src="" alt="Preview">
+                                    <button type="button" class="image-remove-btn" onclick="app.clearPendingMainImage()" title="Remove"><i class="fas fa-times"></i></button>
+                                </div>
+                                <input type="file" id="pMainImageFile" accept="image/*" style="display:none;" onchange="app.handleMainImageUpload(this)">
+                            </div>
+                        </div>
+
+                        <div class="form-group image-upload-group">
+                            <label>Extra Images (optional)</label>
+                            <div class="image-upload-area" id="extraImagesArea">
+                                ${isEdit && p.images && p.images.length > 1 ? `
+                                    <div class="existing-extra-images" id="existingExtraImages">
+                                        ${p.images.slice(1).map((img, i) => `
+                                            <div class="image-preview-item extra-preview" data-index="${i}">
+                                                <img src="${img}" alt="Extra ${i+1}">
+                                                <button type="button" class="image-remove-btn" onclick="app.removeExistingExtraImage(${i})" title="Remove"><i class="fas fa-times"></i></button>
+                                            </div>
+                                        `).join('')}
+                                    </div>
+                                ` : ''}
+                                <div id="extraImagePreviews"></div>
+                                <div class="image-upload-placeholder" onclick="document.getElementById('pExtraImagesFile').click()">
+                                    <i class="fas fa-plus-circle"></i>
+                                    <span>Add more photos</span>
+                                </div>
+                                <input type="file" id="pExtraImagesFile" accept="image/*" multiple style="display:none;" onchange="app.handleExtraImagesUpload(this)">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Colors — comma separated (optional)</label>
+                            <input type="text" id="pColors" value="${isEdit ? p.colors.join(', ') : ''}" placeholder="e.g. Beige, Black, Tan">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Sizes — comma separated (optional)</label>
+                            <input type="text" id="pSizes" value="${isEdit ? p.sizes.join(', ') : ''}" placeholder="e.g. S, M, L, XL">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Description</label>
+                            <textarea id="pDescription" rows="4" placeholder="Describe the product...">${isEdit ? p.description : ''}</textarea>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Badge</label>
+                                <select id="pBadge">
+                                    <option value="">None</option>
+                                    <option value="NEW" ${isEdit && p.badge === 'NEW' ? 'selected' : ''}>NEW</option>
+                                    <option value="SALE" ${isEdit && p.badge === 'SALE' ? 'selected' : ''}>SALE</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Tag</label>
+                                <select id="pTag">
+                                    <option value="">None</option>
+                                    <option value="Trending" ${isEdit && p.tag === 'Trending' ? 'selected' : ''}>Trending</option>
+                                    <option value="Best Seller" ${isEdit && p.tag === 'Best Seller' ? 'selected' : ''}>Best Seller</option>
+                                    <option value="Pru's Pick" ${isEdit && p.tag === "Pru's Pick" ? 'selected' : ''}>Pru's Pick</option>
+                                    <option value="Under 1500" ${isEdit && p.tag === 'Under 1500' ? 'selected' : ''}>Under 1500</option>
+                                    <option value="Premium" ${isEdit && p.tag === 'Premium' ? 'selected' : ''}>Premium</option>
+                                    <option value="Thrift Find" ${isEdit && p.tag === 'Thrift Find' ? 'selected' : ''}>Thrift Find</option>
+                                    <option value="Gift Ready" ${isEdit && p.tag === 'Gift Ready' ? 'selected' : ''}>Gift Ready</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row" style="align-items:center;">
+                            <label style="display:flex; align-items:center; gap:8px; cursor:pointer;">
+                                <input type="checkbox" id="pIsNew" ${isEdit && p.isNew ? 'checked' : ''}>
+                                <span>Mark as New Arrival</span>
+                            </label>
+                            <label style="display:flex; align-items:center; gap:8px; cursor:pointer;">
+                                <input type="checkbox" id="pIsSale" ${isEdit && p.isSale ? 'checked' : ''}>
+                                <span>Mark as On Sale</span>
+                            </label>
+                        </div>
+
+                        <div style="display:flex; gap:12px; margin-top:24px;">
+                            <button class="btn btn-primary" style="flex:1;" onclick="app.saveProduct('${isEdit ? p.id : ''}')">
+                                <i class="fas fa-save"></i> ${isEdit ? 'Save Changes' : 'Add Product'}
+                            </button>
+                            <button class="btn btn-outline" onclick="app.setAdminTab('products')">
+                                Cancel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        `;
+    },
+
+    // --- Image Upload Handlers ---
+    async handleMainImageUpload(input) {
+        if (!input.files || !input.files[0]) return;
+        try {
+            const compressed = await compressImage(input.files[0]);
+            _pendingImages.main = compressed;
+            // Show preview
+            const preview = document.getElementById('mainImagePreview');
+            const previewImg = document.getElementById('mainImagePreviewImg');
+            const placeholder = input.closest('.image-upload-area').querySelector('.image-upload-placeholder');
+            if (previewImg) previewImg.src = compressed;
+            if (preview) preview.style.display = '';
+            if (placeholder) placeholder.style.display = 'none';
+            // Hide existing main preview if present
+            const existingPreview = input.closest('.image-upload-area').querySelector('.main-preview:not(#mainImagePreview)');
+            if (existingPreview) existingPreview.style.display = 'none';
+            // Clear existing hidden input so we know it's been replaced
+            const existingInput = document.getElementById('pExistingMainImage');
+            if (existingInput) existingInput.value = '';
+            this.showToast('Main image selected ✓');
+        } catch(e) {
+            this.showToast('Failed to process image. Try again.');
+        }
+        input.value = '';
+    },
+
+    async handleExtraImagesUpload(input) {
+        if (!input.files || !input.files.length) return;
+        const previewsContainer = document.getElementById('extraImagePreviews');
+        for (const file of input.files) {
+            try {
+                const compressed = await compressImage(file);
+                _pendingImages.extra.push(compressed);
+                const item = document.createElement('div');
+                item.className = 'image-preview-item extra-preview';
+                item.innerHTML = `
+                    <img src="${compressed}" alt="Extra image">
+                    <button type="button" class="image-remove-btn" onclick="app.removePendingExtraImage(this, ${_pendingImages.extra.length - 1})" title="Remove"><i class="fas fa-times"></i></button>
+                `;
+                previewsContainer.appendChild(item);
+            } catch(e) {
+                this.showToast('Failed to process one of the images.');
+            }
+        }
+        input.value = '';
+        this.showToast(`${input.files.length} extra image(s) selected ✓`);
+    },
+
+    clearPendingMainImage() {
+        _pendingImages.main = null;
+        const preview = document.getElementById('mainImagePreview');
+        const previewImg = document.getElementById('mainImagePreviewImg');
+        if (previewImg) previewImg.src = '';
+        if (preview) preview.style.display = 'none';
+        // Re-show placeholder
+        const area = document.getElementById('mainImageArea');
+        const placeholder = area ? area.querySelector('.image-upload-placeholder') : null;
+        if (placeholder) placeholder.style.display = '';
+    },
+
+    removePendingExtraImage(btn, index) {
+        _pendingImages.extra.splice(index, 1);
+        const item = btn.closest('.image-preview-item');
+        if (item) item.remove();
+        // Re-index remaining remove buttons
+        const remaining = document.querySelectorAll('#extraImagePreviews .extra-preview');
+        remaining.forEach((el, i) => {
+            const removeBtn = el.querySelector('.image-remove-btn');
+            if (removeBtn) removeBtn.setAttribute('onclick', `app.removePendingExtraImage(this, ${i})`);
+        });
+    },
+
+    removeExistingMainImage() {
+        if (this._editProductImages) this._editProductImages.main = '';
+        const area = document.getElementById('mainImageArea');
+        const existingPreview = area ? area.querySelector('.main-preview:not(#mainImagePreview)') : null;
+        if (existingPreview) existingPreview.style.display = 'none';
+        // Show placeholder so they can upload a new one
+        const placeholder = area ? area.querySelector('.image-upload-placeholder') : null;
+        if (placeholder) placeholder.style.display = '';
+    },
+
+    removeExistingExtraImage(index) {
+        if (this._editProductImages) {
+            this._editProductImages.extra.splice(index, 1);
+        }
+        const container = document.getElementById('existingExtraImages');
+        if (!container) return;
+        const items = container.querySelectorAll('.extra-preview');
+        if (items[index]) items[index].remove();
+        // Re-index remaining remove buttons
+        const remaining = container.querySelectorAll('.extra-preview');
+        remaining.forEach((el, i) => {
+            const removeBtn = el.querySelector('.image-remove-btn');
+            if (removeBtn) removeBtn.setAttribute('onclick', `app.removeExistingExtraImage(${i})`);
+        });
+    },
+
+    saveProduct(productId) {
+        const name = document.getElementById('pName').value.trim();
+        const category = document.getElementById('pCategory').value;
+        const price = parseInt(document.getElementById('pPrice').value) || 0;
+        const oldPrice = parseInt(document.getElementById('pOldPrice').value) || null;
+        const stock = parseInt(document.getElementById('pStock').value) || 0;
+        const rating = parseFloat(document.getElementById('pRating').value) || 4.5;
+        const reviews = parseInt(document.getElementById('pReviews').value) || 0;
+        const colors = document.getElementById('pColors').value.split(',').map(s => s.trim()).filter(s => s);
+        const sizes = document.getElementById('pSizes').value.split(',').map(s => s.trim()).filter(s => s);
+        const description = document.getElementById('pDescription').value.trim();
+        const badge = document.getElementById('pBadge').value || null;
+        const tag = document.getElementById('pTag').value || null;
+        const isNew = document.getElementById('pIsNew').checked;
+        const isSale = document.getElementById('pIsSale').checked;
+
+        // Determine main image: pending upload > existing edit > none
+        let image = _pendingImages.main;
+        if (!image && this._editProductImages) {
+            image = this._editProductImages.main || '';
+        }
+
+        if (!name || !category || !price || !image) {
+            this.showToast('Please fill in all required fields and upload a main image.');
+            return;
+        }
+
+        // Build images array: main + existing extras + pending extras
+        const images = [image];
+        if (this._editProductImages && this._editProductImages.extra.length) {
+            images.push(...this._editProductImages.extra);
+        }
+        if (_pendingImages.extra.length) {
+            images.push(..._pendingImages.extra);
+        }
+
+        const newProduct = {
+            id: productId || (category + '-' + Date.now().toString(36)),
+            name, category, price, oldPrice, stock, rating, reviews,
+            image, images, colors, sizes, description, badge, tag, isNew, isSale
+        };
+
+        if (productId) {
+            const idx = productData.findIndex(p => p.id === productId);
+            if (idx >= 0) productData[idx] = newProduct;
+        } else {
+            productData.push(newProduct);
+        }
+
+        // Check localStorage quota before saving
+        try {
+            const testKey = '__prus_quota_test__';
+            const dataStr = JSON.stringify(productData);
+            localStorage.setItem(testKey, dataStr);
+            localStorage.removeItem(testKey);
+        } catch(e) {
+            // Remove the product we just added/updated to revert
+            if (productId) {
+                const idx = productData.findIndex(p => p.id === productId);
+                if (idx >= 0 && !this._editProductImages) productData.splice(idx, 1);
+            } else {
+                productData.pop();
+            }
+            this.showToast('⚠️ Storage full! Remove some products or images with smaller file sizes.', 5000);
+            return;
+        }
+
+        // Clear pending images
+        _pendingImages.main = null;
+        _pendingImages.extra = [];
+        this._editProductImages = null;
+
+        saveProducts(productData);
+        if (cloud.enabled) {
+            cloud.put('products', newProduct.id, newProduct)
+                .then(() => this.showToast('Saved and published \u2014 shoppers on every device can see it now. \uD83C\uDF89'))
+                .catch(() => this.showToast('Saved here, but the shared store could not be reached. Try Publish in Settings.', 5000));
+        }
+        this.showToast(productId ? 'Product updated! \uD83C\uDF89' : 'Product added! \uD83C\uDF89');
+        this.editingProduct = null;
+        this.adminTab = 'products';
+        this.render('admin', null, false);
+    },
+
+    renderAdminSettings() {
+        const cfg = cloud.load();
+        return `
+            <section class="section" style="max-width:600px; margin:0 auto;">
+                <div style="display:flex; align-items:center; gap:12px; margin-bottom:24px;">
+                    <button class="btn btn-outline" onclick="app.setAdminTab('products')" style="width:auto; padding:8px 16px;">
+                        <i class="fas fa-arrow-left"></i> Back
+                    </button>
+                    <h2 style="font-family:'Playfair Display', serif;">\u2699\uFE0F Settings</h2>
+                </div>
+
+                <div style="background:var(--card-bg); padding:32px; border-radius:var(--radius); border:1px solid var(--border); margin-bottom:24px;">
+                    <h3 style="margin-bottom:8px;"><i class="fas fa-cloud"></i> Shared Shop (all devices)</h3>
+                    <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:16px;">
+                        Turn this on so anything you add here shows up for every shopper, on every phone and computer.
+                        Paste the two details from your free Google Firebase project, tick the box, then press Publish once.
+                    </p>
+                    <div class="form-group">
+                        <label>Project ID</label>
+                        <input type="text" id="cloudProject" value="${this.esc(cfg.projectId || '')}" placeholder="e.g. prus-closet-shop">
+                    </div>
+                    <div class="form-group">
+                        <label>Web API Key</label>
+                        <input type="text" id="cloudKey" value="${this.esc(cfg.apiKey || '')}" placeholder="AIza...">
+                    </div>
+                    <label style="display:flex; align-items:center; gap:10px; margin-bottom:16px; cursor:pointer;">
+                        <input type="checkbox" id="cloudEnabled" ${cfg.enabled ? 'checked' : ''} style="width:18px; height:18px;">
+                        <span>Share my shop with everyone</span>
+                    </label>
+                    <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                        <button class="btn btn-primary" onclick="app.saveCloudSettings()">
+                            <i class="fas fa-save"></i> Save
+                        </button>
+                        <button class="btn btn-outline" onclick="app.publishToShared()">
+                            <i class="fas fa-cloud-upload-alt"></i> Publish my items
+                        </button>
+                        <button class="btn btn-outline" onclick="app.syncFromSharedStore(true)">
+                            <i class="fas fa-sync"></i> Refresh from shop
+                        </button>
+                    </div>
+                    <p style="color:var(--text-muted); font-size:0.85rem; margin-top:14px;">
+                        Status: <strong>${cloud.enabled ? 'Sharing is ON' : 'Only saved on this device'}</strong>
+                    </p>
+                </div>
+
+                <div style="background:var(--card-bg); padding:32px; border-radius:var(--radius); border:1px solid var(--border);">
+                    <h3 style="margin-bottom:16px;">Change Admin Password</h3>
+                    <div class="form-group">
+                        <label>Current Password</label>
+                        <input type="password" id="currentPw" placeholder="Enter current password">
+                    </div>
+                    <div class="form-group">
+                        <label>New Password</label>
+                        <input type="password" id="newPw" placeholder="Enter new password">
+                    </div>
+                    <div class="form-group">
+                        <label>Confirm New Password</label>
+                        <input type="password" id="confirmPw" placeholder="Confirm new password">
+                    </div>
+                    <button class="btn btn-primary" onclick="app.changeAdminPassword()">
+                        <i class="fas fa-key"></i> Update Password
+                    </button>
+
+                    <hr style="border:0; border-top:1px solid var(--border); margin:32px 0;">
+
+                    <h3 style="margin-bottom:16px; color:var(--danger);">Danger Zone</h3>
+                    <p style="color:var(--text-muted); margin-bottom:16px; font-size:0.9rem;">
+                        Resetting will clear every product you have added and empty the store back to a clean slate.
+                    </p>
+                    <button class="btn btn-danger" onclick="if(confirm('Are you sure? This will delete every product you have added and leave the store empty.')) { resetProducts(); app.showToast('Store reset to defaults.'); }">
+                        <i class="fas fa-exclamation-triangle"></i> Reset All Data
+                    </button>
+                </div>
+            </section>
+        `;
+    },
+
+    async saveCloudSettings() {
+        const projectId = (document.getElementById('cloudProject')?.value || '').trim();
+        const apiKey = (document.getElementById('cloudKey')?.value || '').trim();
+        const enabled = !!document.getElementById('cloudEnabled')?.checked;
+        if (enabled && (!projectId || !apiKey)) { this.showToast('Please fill in both the Project ID and the API key first.'); return; }
+        cloud.save({ enabled, projectId, apiKey });
+        this.showToast(enabled ? 'Sharing is on. Press \u201CPublish my items\u201D once to send your current items up.' : 'Saved. Your shop is only on this device for now.');
+        this.render('admin', null, false);
+    },
+
+    async publishToShared() {
+        if (!cloud.enabled) { this.showToast('Switch on sharing and save your details first.'); return; }
+        this.showToast('Publishing your items\u2026');
+        try {
+            const n = await pushSharedStore();
+            this.showToast(n + ' item(s) published \u2014 everyone can see them now. \uD83C\uDF89', 4000);
+        } catch(e) {
+            this.showToast(e.message || 'Could not reach the shared shop. Please check your internet and details.', 5000);
+        }
+    },
+
+    changeAdminPassword() {
+        const current = document.getElementById('currentPw').value;
+        const newPw = document.getElementById('newPw').value;
+        const confirm = document.getElementById('confirmPw').value;
+        const saved = localStorage.getItem('prusAdminPassword') || 'pru2026';
+
+        if (current !== saved) { this.showToast('Current password is incorrect.'); return; }
+        if (!newPw || newPw.length < 4) { this.showToast('New password must be at least 4 characters.'); return; }
+        if (newPw !== confirm) { this.showToast('Passwords do not match.'); return; }
+
+        localStorage.setItem('prusAdminPassword', newPw);
+        this.showToast('Password updated successfully!');
+        document.getElementById('currentPw').value = '';
+        document.getElementById('newPw').value = '';
+        document.getElementById('confirmPw').value = '';
+    },
+
+    // --- UI Helpers ---
+    toggleMenu() {
+        document.getElementById('mobileMenu').classList.toggle('active');
+    },
+
+    toggleSearch() {
+        document.getElementById('searchBar').classList.toggle('active');
+        if (document.getElementById('searchBar').classList.contains('active')) {
+            setTimeout(() => document.getElementById('searchInput').focus(), 100);
+        }
+    },
+
+    handleSearch(e) {
+        if (e.key === 'Enter') this.performSearch();
+    },
+
+    performSearch() {
+        const q = document.getElementById('searchInput').value.trim();
+        if (q) {
+            this.toggleSearch();
+            this.navigate('search', q);
+        }
+    },
+
+    showToast(msg, duration = 3000) {
+        const toast = document.getElementById('toast');
+        document.getElementById('toastMessage').textContent = msg;
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), duration);
+    },
+
+    // --- Cart Persistence ---
+    loadCart() {
+        try {
+            const saved = localStorage.getItem('prusCart');
+            if (saved) this.cart = JSON.parse(saved);
+        } catch(e) { this.cart = []; }
+    },
+
+    saveCart() {
+        try { localStorage.setItem('prusCart', JSON.stringify(this.cart)); } catch(e) {}
+    },
+
+    updateCartCount() {
+        const count = this.cart.reduce((sum, c) => sum + c.qty, 0);
+        const el = document.getElementById('cartCount');
+        if (el) {
+            el.textContent = count;
+            el.style.display = count > 0 ? 'flex' : 'none';
+        }
+    }
+};
+
+// Initialize on load
+document.addEventListener('DOMContentLoaded', () => app.init());
+
+</script>
+</body>
+</html>
